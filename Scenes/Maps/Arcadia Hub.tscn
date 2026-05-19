@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bbraujti2lyqt" path="res://Scenes/SceneEntranceDown.tscn" id="10_c1lj7"]
 [ext_resource type="AudioStream" uid="uid://d4k0a4p74p8mf" path="res://Art/Others/village Themee.mp3" id="11_lmkp3"]
 [ext_resource type="Script" uid="uid://gxidn75u3fot" path="res://Scenes/Maps/music_controller.gd" id="12_ibmu0"]
+[ext_resource type="Script" uid="uid://br7fi2104xmgq" path="res://Scenes/Maps/poi.gd" id="13_lp6rn"]
+[ext_resource type="PackedScene" uid="uid://dh1oyvf8wjys3" path="res://Minimap.tscn" id="14_j5nwm"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_8pvot"]
 tile_data = PackedInt32Array(0, 1, 805306389, 65536, 1, 1342177301, 1, 1, 1610612757, 65537, 1, 21)
@@ -2495,3 +2497,35 @@ spawn_point_name = "ARENA3 Entrance"
 [node name="MusicController" type="Node" parent="." unique_id=388786638]
 script = ExtResource("12_ibmu0")
 music = ExtResource("11_lmkp3")
+
+[node name="TemplePOI" type="Node2D" parent="." unique_id=78588902]
+position = Vector2(-7, -137)
+script = ExtResource("13_lp6rn")
+poi_type = "Temple"
+
+[node name="HousePOI" type="Node2D" parent="." unique_id=1283845929]
+position = Vector2(326, -69)
+script = ExtResource("13_lp6rn")
+poi_type = "House"
+
+[node name="TrainingPOI" type="Node2D" parent="." unique_id=1203797045]
+position = Vector2(-393, -48)
+script = ExtResource("13_lp6rn")
+poi_type = "Training Area"
+
+[node name="MinotaurPOI" type="Node2D" parent="." unique_id=693880024]
+position = Vector2(-642, 424)
+script = ExtResource("13_lp6rn")
+poi_type = "Minotaur"
+
+[node name="MedusaPOI" type="Node2D" parent="." unique_id=247493983]
+position = Vector2(854, 321)
+script = ExtResource("13_lp6rn")
+poi_type = "Medusa"
+
+[node name="CyclopPOI" type="Node2D" parent="." unique_id=1283954638]
+position = Vector2(-120, 1170)
+script = ExtResource("13_lp6rn")
+poi_type = "Cyclop"
+
+[node name="Minimap" parent="." unique_id=1072529477 instance=ExtResource("14_j5nwm")]
