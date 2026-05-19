@@ -45,7 +45,7 @@ texture = ExtResource("2_t0xyd")
 
 [node name="8Feb91b88Dba4528875b315Fb6c7f52cRemovebgPreview" type="Sprite2D" parent="." unique_id=50039800]
 texture_filter = 1
-position = Vector2(1613.9999, 594.00006)
+position = Vector2(1661.9999, 647.00006)
 scale = Vector2(2.5177207, 2.334273)
 texture = ExtResource("2_4onrk")
 
@@ -145,7 +145,7 @@ theme_override_fonts/font = ExtResource("6_iov1x")
 theme_override_font_sizes/font_size = 32
 text = "Confirma"
 
-[node name="MusicController" type="Node" parent="." unique_id=1097149545]
+[node name="MusicController" type="Node" parent="." unique_id=1097149545 groups=["music"]]
 script = ExtResource("12_k787g")
 music = ExtResource("13_skbqr")
 
