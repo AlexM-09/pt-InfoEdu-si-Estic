@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://33r8u0vwwmyw" path="res://Art/mystic_woods_free_2.2/sprites/characters/player.png" id="3_iov1x"]
 [ext_resource type="Texture2D" uid="uid://cj5i2ec61mhxt" path="res://Art/Gladiators/Gladiator-Sprite Sheet.png" id="4_2sm0f"]
 [ext_resource type="FontFile" uid="uid://sw05w6je7nyj" path="res://Art/Others/DIOGENES.ttf" id="6_iov1x"]
+[ext_resource type="Texture2D" uid="uid://busfo5l8wt3gl" path="res://Art/Humble Gift - v1.3/PNG/SpriteSheet.png" id="10_chors"]
+[ext_resource type="Script" uid="uid://cqchn0tvwctmd" path="res://Scripts/h_slider.gd" id="11_5i37o"]
 [ext_resource type="Script" uid="uid://boyeycsn5xysq" path="res://Scenes/Maps/canvas_layer_menu.gd" id="11_iiryw"]
 [ext_resource type="Script" uid="uid://gxidn75u3fot" path="res://Scenes/Maps/music_controller.gd" id="12_k787g"]
 [ext_resource type="AudioStream" uid="uid://gs7xuwt0tucu" path="res://Art/Others/PRIMUL PROIECT MUZICANT pt joc.mp3" id="13_skbqr"]
@@ -13,6 +15,18 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4onrk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iiryw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iiryw"]
+texture = ExtResource("10_chors")
+region_rect = Rect2(36, 1666, 250, 284)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5i37o"]
+texture = ExtResource("10_chors")
+region_rect = Rect2(48, 1459, 97, 9)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k787g"]
+texture = ExtResource("10_chors")
+region_rect = Rect2(208, 2004, 69, 18)
 
 [node name="Control" type="Control" unique_id=213135547]
 layout_mode = 3
@@ -135,5 +149,69 @@ text = "Confirma"
 script = ExtResource("12_k787g")
 music = ExtResource("13_skbqr")
 
+[node name="Options" type="Panel" parent="." unique_id=1859902014]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23434344
+anchor_top = 0.2
+anchor_right = 0.6828283
+anchor_bottom = 0.74814814
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_iiryw")
+metadata/_edit_use_anchors_ = true
+
+[node name="titlu" type="Label" parent="Options" unique_id=1905444588]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.036036037
+anchor_right = 0.981982
+anchor_bottom = 0.14864865
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_5i37o")
+metadata/_edit_use_anchors_ = true
+
+[node name="audio" type="Label" parent="Options" unique_id=2141785954]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.045045044
+anchor_top = 0.29729733
+anchor_right = 0.34234235
+anchor_bottom = 0.40540534
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_k787g")
+metadata/_edit_use_anchors_ = true
+
+[node name="back" type="Button" parent="Options" unique_id=151319235]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3963964
+anchor_top = 0.7162162
+anchor_right = 0.6306306
+anchor_bottom = 0.9391892
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_iov1x")
+theme_override_font_sizes/font_size = 84
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4onrk")
+text = "BACK"
+metadata/_edit_use_anchors_ = true
+
+[node name="HSlider" type="HSlider" parent="Options" unique_id=944065342]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 176.0
+offset_right = 690.6666
+offset_bottom = 213.33334
+scale = Vector2(1.5, 1.5)
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("11_5i37o")
+audio_bus_name = "Master"
+
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Options/back" to="." method="_on_back_options_pressed"]
+[connection signal="value_changed" from="Options/HSlider" to="Options/HSlider" method="_on_value_changed"]
