@@ -21,6 +21,12 @@ SceneTransition="*res://Scripts/SceneTransition.gd"
 SaveManager="*res://Scripts/save_manager.gd"
 AudioManager="*res://Scripts/audio_manager.gd"
 
+[display]
+
+window/size/viewport_width=1980
+window/size/viewport_height=1080
+window/size/mode=3
+
 [global_group]
 
 boss=""
