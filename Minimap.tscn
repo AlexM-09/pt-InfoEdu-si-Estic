@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dh1oyvf8wjys3"]
+
+[ext_resource type="Script" uid="uid://bcvs7oyjygl6v" path="res://Minimap.gd" id="1_ttd1e"]
+
+[node name="Minimap" type="CanvasLayer" unique_id=1072529477]
+script = ExtResource("1_ttd1e")
+
+[node name="Control" type="Control" parent="." unique_id=1657595248]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="Panel" type="Panel" parent="Control" unique_id=316919838]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=1277782908]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 150.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer" unique_id=55177206]
+handle_input_locally = false
+audio_listener_enable_2d = true
+size = Vector2i(200, 150)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="Control/SubViewportContainer/SubViewport" unique_id=319992051]
+zoom = Vector2(0.2, 0.2)
+limit_enabled = false
+
+[node name="PlayerDot" type="ColorRect" parent="Control" unique_id=292588159]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 70.0
+offset_right = 105.0
+offset_bottom = 80.0
+color = Color(0, 1, 0, 1)
