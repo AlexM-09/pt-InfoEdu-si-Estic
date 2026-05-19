@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://8gb1scchvp28"]
+
+[ext_resource type="Script" uid="uid://byem2gr4yronx" path="res://Scenes/TransitionOverlay.gd" id="1_xa8ts"]
+
+[sub_resource type="Animation" id="Animation_o7nmj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mfhgh"]
+resource_name = "fade_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s7b3p"]
+resource_name = "fade_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yiw7p"]
+_data = {
+&"RESET": SubResource("Animation_o7nmj"),
+&"fade_in": SubResource("Animation_mfhgh"),
+&"fade_out": SubResource("Animation_s7b3p")
+}
+
+[node name="TransitionOverlay" type="CanvasLayer" unique_id=1272161375]
+script = ExtResource("1_xa8ts")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2124696921]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=930938820]
+libraries/ = SubResource("AnimationLibrary_yiw7p")

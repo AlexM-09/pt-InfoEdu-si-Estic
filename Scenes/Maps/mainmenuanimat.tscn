@@ -1,0 +1,295 @@
+[gd_scene format=3 uid="uid://cyt1xasklh76w"]
+
+[ext_resource type="Script" uid="uid://ki60tc1db573" path="res://Scenes/Maps/mainmenuanimat.gd" id="1_2sm0f"]
+[ext_resource type="Texture2D" uid="uid://d1n8yvel7b4ib" path="res://Art/8feb91b8-8dba-4528-875b-315fb6c7f52c-removebg-preview.png" id="2_4onrk"]
+[ext_resource type="Texture2D" uid="uid://c0fm2ncsl7i6o" path="res://Art/gui/Summer4.png" id="2_t0xyd"]
+[ext_resource type="Texture2D" uid="uid://33r8u0vwwmyw" path="res://Art/mystic_woods_free_2.2/sprites/characters/player.png" id="3_iov1x"]
+[ext_resource type="Texture2D" uid="uid://cj5i2ec61mhxt" path="res://Art/Gladiators/Gladiator-Sprite Sheet.png" id="4_2sm0f"]
+[ext_resource type="Texture2D" uid="uid://r766rx0ldbtu" path="res://Art/ancient_greeks_tileset/tileset_16px/buildings.png" id="5_t0xyd"]
+[ext_resource type="FontFile" uid="uid://sw05w6je7nyj" path="res://Art/Others/DIOGENES.ttf" id="6_iov1x"]
+[ext_resource type="Texture2D" uid="uid://csqmov77kjoyw" path="res://Art/foc/Group 6 - 2.png" id="8_aur33"]
+[ext_resource type="Script" uid="uid://bjou81suq1juv" path="res://Scripts/buildings.gd" id="8_chors"]
+[ext_resource type="Script" uid="uid://dqc4itna0eqsp" path="res://Scripts/buildings_2.gd" id="10_iiryw"]
+[ext_resource type="Script" uid="uid://boyeycsn5xysq" path="res://Scenes/Maps/canvas_layer_menu.gd" id="11_iiryw"]
+[ext_resource type="Script" uid="uid://gxidn75u3fot" path="res://Scenes/Maps/music_controller.gd" id="12_k787g"]
+[ext_resource type="AudioStream" uid="uid://gs7xuwt0tucu" path="res://Art/Others/PRIMUL PROIECT MUZICANT pt joc.mp3" id="13_skbqr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chors"]
+atlas = ExtResource("8_aur33")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiryw"]
+atlas = ExtResource("8_aur33")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i37o"]
+atlas = ExtResource("8_aur33")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k787g"]
+atlas = ExtResource("8_aur33")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skbqr"]
+atlas = ExtResource("8_aur33")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkl1c"]
+atlas = ExtResource("8_aur33")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4lbh"]
+atlas = ExtResource("8_aur33")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqpww"]
+atlas = ExtResource("8_aur33")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc3fx"]
+atlas = ExtResource("8_aur33")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rou8u"]
+atlas = ExtResource("8_aur33")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsd6f"]
+atlas = ExtResource("8_aur33")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7eme"]
+atlas = ExtResource("8_aur33")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gup8e"]
+atlas = ExtResource("8_aur33")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py38q"]
+atlas = ExtResource("8_aur33")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uvidx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chors")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiryw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i37o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k787g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skbqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkl1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4lbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqpww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc3fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rou8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsd6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7eme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gup8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py38q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4onrk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iiryw"]
+
+[node name="Control" type="Control" unique_id=213135547]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_2sm0f")
+
+[node name="Summer4" type="Sprite2D" parent="." unique_id=1322144823]
+position = Vector2(600.4444, 338)
+scale = Vector2(0.5216049, 0.5216049)
+texture = ExtResource("2_t0xyd")
+
+[node name="8Feb91b88Dba4528875b315Fb6c7f52cRemovebgPreview" type="Sprite2D" parent="." unique_id=50039800]
+texture_filter = 1
+position = Vector2(914, 348)
+scale = Vector2(1.6539638, 1.4749753)
+texture = ExtResource("2_4onrk")
+
+[node name="Player" type="Sprite2D" parent="." unique_id=1018698145]
+position = Vector2(791.7763, 560.8166)
+scale = Vector2(6.6111493, 4.9117036)
+texture = ExtResource("3_iov1x")
+region_enabled = true
+region_rect = Rect2(257, 136, 15, 4)
+metadata/_edit_group_ = true
+
+[node name="Player2" type="Sprite2D" parent="." unique_id=1703538267]
+position = Vector2(626, 527.00006)
+scale = Vector2(1.381, 1.026)
+texture = ExtResource("3_iov1x")
+region_enabled = true
+region_rect = Rect2(257, 136, 15, 4)
+metadata/_edit_group_ = true
+
+[node name="Player3" type="Sprite2D" parent="." unique_id=149621050]
+position = Vector2(1103, 527.00006)
+scale = Vector2(1.381, 1.026)
+texture = ExtResource("3_iov1x")
+region_enabled = true
+region_rect = Rect2(257, 136, 15, 4)
+metadata/_edit_group_ = true
+
+[node name="GladiatorSpriteSheet" type="Sprite2D" parent="." unique_id=683721979]
+position = Vector2(788.36, 515.64)
+scale = Vector2(-4.72, 4.72)
+texture = ExtResource("4_2sm0f")
+region_enabled = true
+region_rect = Rect2(35, 104, 26, 24)
+metadata/_edit_group_ = true
+
+[node name="Buildings" type="Sprite2D" parent="." unique_id=1731471501]
+position = Vector2(625, 498.00006)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_t0xyd")
+region_enabled = true
+region_rect = Rect2(703.09424, 119.53459, 16.250244, 42.696564)
+script = ExtResource("8_chors")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Buildings" unique_id=1190991581]
+unique_name_in_owner = true
+position = Vector2(0.6666565, -23.333385)
+scale = Vector2(0.54166603, 0.54166603)
+sprite_frames = SubResource("SpriteFrames_uvidx")
+
+[node name="Buildings2" type="Sprite2D" parent="." unique_id=662321413]
+position = Vector2(1103, 498.00003)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_t0xyd")
+region_enabled = true
+region_rect = Rect2(703.09424, 119.53459, 16.250244, 42.696564)
+script = ExtResource("10_iiryw")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Buildings2" unique_id=1574852853]
+unique_name_in_owner = true
+position = Vector2(0.66664636, -23.333323)
+scale = Vector2(0.54166603, 0.54166603)
+sprite_frames = SubResource("SpriteFrames_uvidx")
+frame = 1
+frame_progress = 0.52692974
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=103721166]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 88.99988
+offset_top = -74.0
+offset_right = 348.99988
+offset_bottom = 237.0
+grow_vertical = 2
+alignment = 1
+
+[node name="start" type="Button" parent="VBoxContainer" unique_id=32460185]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_iov1x")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4onrk")
+text = "START"
+
+[node name="settings" type="Button" parent="VBoxContainer" unique_id=1074229680]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_iov1x")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4onrk")
+text = "SETTINGS"
+
+[node name="quit" type="Button" parent="VBoxContainer" unique_id=1531520891]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_iov1x")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4onrk")
+text = "QUIT"
+
+[node name="CanvasLayerMenu" type="CanvasLayer" parent="." unique_id=1765303210]
+script = ExtResource("11_iiryw")
+
+[node name="NamePopup" type="Panel" parent="CanvasLayerMenu" unique_id=1324737191]
+anchors_preset = -1
+anchor_bottom = 0.031000001
+offset_right = 40.0
+offset_bottom = 19.911999
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iiryw")
+
+[node name="Title" type="Label" parent="CanvasLayerMenu/NamePopup" unique_id=526401948]
+layout_mode = 0
+offset_left = 662.0
+offset_top = 174.0
+offset_right = 1022.0
+offset_bottom = 238.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_iov1x")
+theme_override_font_sizes/font_size = 40
+text = "Cum te numesti, erou?"
+
+[node name="NameInput" type="LineEdit" parent="CanvasLayerMenu/NamePopup" unique_id=1217761938]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 682.0
+offset_top = 284.0
+offset_right = 1010.0
+offset_bottom = 294.0
+
+[node name="BtnConfirm" type="Button" parent="CanvasLayerMenu/NamePopup" unique_id=555467825]
+layout_mode = 0
+offset_left = 783.0
+offset_top = 371.0
+offset_right = 930.0
+offset_bottom = 430.0
+theme_override_fonts/font = ExtResource("6_iov1x")
+theme_override_font_sizes/font_size = 32
+text = "Confirma"
+
+[node name="MusicController" type="Node" parent="." unique_id=1097149545]
+script = ExtResource("12_k787g")
+music = ExtResource("13_skbqr")
+
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

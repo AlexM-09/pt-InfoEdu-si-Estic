@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bgvnf28gsa0lp"]
+
+[ext_resource type="Script" uid="uid://rjkx54oj56gp" path="res://Scripts/mainmenu.gd" id="1_2sa5j"]
+[ext_resource type="Texture2D" uid="uid://cj5i2ec61mhxt" path="res://Art/Gladiators/Gladiator-Sprite Sheet.png" id="2_xowxa"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3gcwn"]
+texture = ExtResource("2_xowxa")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xowxa"]
+bg_color = Color(0.8549048, 0.4992407, 0.18283358, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 4
+
+[node name="Mainmenu" type="Control" unique_id=560584322]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2sa5j")
+
+[node name="Panel" type="Panel" parent="." unique_id=1761796676]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_3gcwn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1827197766]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.5
+offset_top = -87.5
+offset_right = 96.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=755848854]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_xowxa")
+text = "Start
+"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1869508673]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_xowxa")
+text = "options
+
+"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1869545703]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_xowxa")
+text = "EXIT
+
+"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Start_pressed"]

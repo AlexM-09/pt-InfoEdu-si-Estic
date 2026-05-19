@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d4k0a4p74p8mf"
+path="res://.godot/imported/village Themee.mp3-2a3864a83d9a04d88766e405e699f329.mp3str"
+
+[deps]
+
+source_file="res://Art/Others/village Themee.mp3"
+dest_files=["res://.godot/imported/village Themee.mp3-2a3864a83d9a04d88766e405e699f329.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

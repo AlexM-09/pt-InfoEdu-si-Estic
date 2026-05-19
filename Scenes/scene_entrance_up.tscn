@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d0ncnha1rmt80"]
+
+[ext_resource type="Script" uid="uid://bmliwjr05dx0g" path="res://Scenes/scene_entrance.gd" id="1_ldh8k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4elt"]
+
+[node name="SceneEntranceUp" type="Area2D" unique_id=573044686]
+script = ExtResource("1_ldh8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1547547490]
+shape = SubResource("RectangleShape2D_c4elt")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=381931221]
+position = Vector2(0, 60)

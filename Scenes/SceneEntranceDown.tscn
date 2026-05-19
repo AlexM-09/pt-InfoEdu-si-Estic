@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bbraujti2lyqt"]
+
+[ext_resource type="Script" uid="uid://bmliwjr05dx0g" path="res://Scenes/scene_entrance.gd" id="1_fcdlo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4blw"]
+
+[node name="SceneEntranceDown" type="Area2D" unique_id=2142832296]
+script = ExtResource("1_fcdlo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=999096160]
+shape = SubResource("RectangleShape2D_m4blw")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1418230406]
+position = Vector2(0, -30)
