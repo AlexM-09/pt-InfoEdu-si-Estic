@@ -1,13 +1,11 @@
 extends Control
 
 @onready var v_box_container: VBoxContainer = $VBoxContainer
-@onready var canvas_layer_menu: CanvasLayer = $CanvasLayerMenu
 @onready var options: Panel = $Options
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	v_box_container.visible=true
-	canvas_layer_menu.visible=false
 	options.visible=false
 
 
@@ -30,7 +28,6 @@ func _on_quit_pressed() -> void:
 
 func _on_settings_pressed() -> void:
 	v_box_container.visible=false
-	canvas_layer_menu.visible=false
 	options.visible=true
 
 
