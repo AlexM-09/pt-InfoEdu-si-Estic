@@ -27,19 +27,23 @@ func _physics_process(_delta):
 		move_and_slide()
 		return
 	if player_chase and player != null:
-		var direction = (player.global_position - global_position).normalized()
-		velocity = direction * speed
-		if direction.x > 0:
-			sprite_node.scale.x = 1
-		elif direction.x < 0:
-			sprite_node.scale.x = -1
-			
-		if anim.animation != "run":
-			anim.play("run")
-	else:
-		velocity = Vector2.ZERO
-		if anim.animation != "idle":
-			anim.play("idle")
+		var diff = player.global_position - global_position
+		var distance = diff.length()
+		var stop_distance = 18.0
+		if distance > stop_distance:
+			var direction = diff.normalized()
+			velocity = direction * speed
+			if direction.x > 0:
+				sprite_node.scale.x = 1
+			elif direction.x < 0:
+				sprite_node.scale.x = -1
+			if anim.animation != "run":
+				anim.play("run")
+		else:
+			var push_dir = (global_position - player.global_position).normalized()
+			velocity = push_dir * speed * 0.5
+			if anim.animation != "idle" and anim.animation != "attack":
+				anim.play("idle")
 	move_and_slide()
 	update_health()
 
