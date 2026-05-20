@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://d3ovutl00ujhb" path="res://Art/spritesheets/WarriorDeathNOShield.png" id="2_yp1f6"]
 [ext_resource type="Texture2D" uid="uid://bxrhndo32vmps" path="res://Art/spritesheets/WarriorRunningNOShield.png" id="3_hlbyj"]
 
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqo1p"]
+radius = 5.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu0tg"]
 radius = 87.84
 
@@ -280,6 +284,10 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_qlsa7")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1634326830]
+position = Vector2(0, -4.24)
+shape = SubResource("CircleShape2D_vqo1p")
+
 [node name="detection_area" type="Area2D" parent="." unique_id=1591623160]
 visible = false
 position = Vector2(0, -18)
@@ -325,7 +333,7 @@ position = Vector2(0, -0.25)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="animation manager" unique_id=876703590]
 position = Vector2(8, -23)
 sprite_frames = SubResource("SpriteFrames_5qhc6")
-animation = &"idle"
+animation = &"attack"
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1634326830]

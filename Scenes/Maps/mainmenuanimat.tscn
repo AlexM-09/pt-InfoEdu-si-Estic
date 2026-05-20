@@ -116,9 +116,9 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_iiryw")
 
 [node name="Title" type="Label" parent="CanvasLayerMenu/NamePopup" unique_id=526401948]
 layout_mode = 0
-offset_left = 584.0
+offset_left = 613.0
 offset_top = 392.0
-offset_right = 1150.0
+offset_right = 1179.0
 offset_bottom = 510.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_iov1x")
@@ -150,6 +150,7 @@ script = ExtResource("12_k787g")
 music = ExtResource("13_skbqr")
 
 [node name="Options" type="Panel" parent="." unique_id=1859902014]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.23434344

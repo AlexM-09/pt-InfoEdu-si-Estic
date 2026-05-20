@@ -78,7 +78,7 @@ func _on_attack_hitbox_area_entered(area):
 func _on_animation_finished():
 	if anim.animation == "attack":
 		is_attacking = false
-		anim.offset.x = 0
+		anim.offset.x = 4
 		
 		if player_chase:
 			anim.play("run")
