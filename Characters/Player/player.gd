@@ -157,6 +157,7 @@ func take_damage(raw_dmg: float):
 func _die():
 	is_dead = true
 	invincible = true  # nu mai primeste damage
+	is_dashing = false
 	velocity = Vector2.ZERO
 	$CollisionShape2D.disabled = true  # inamicii nu il mai pot detecta
 	$Hurtbox/CollisionShape2D.disabled = true  # nu mai poate fi lovit
