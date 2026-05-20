@@ -14,6 +14,7 @@ var invincible = false
 var current_health: float
 @export var attack_bonus: float = 0.0
 var dash_cooldown: float = 0.0
+var is_dead = false
 
 
 func _ready():
@@ -24,6 +25,8 @@ func _ready():
 	add_to_group("player")
 
 func _physics_process(delta):
+	if is_dead:
+		return
 	if dash_cooldown > 0:
 		dash_cooldown -= delta
 	player_attack()
@@ -134,24 +137,39 @@ func player():
 
 
 func take_damage(raw_dmg: float):
-	if invincible:
+	if invincible or is_dead:
 		return
 	var dmg= calculate_dmg(raw_dmg)
 	health -= dmg
 	print("Player health: ", health)
 	SaveManager.add_damage_taken(dmg)
+	if health <= 0:
+		health = 0
+		_die()
+		return
 	invincible = true
 	await get_tree().create_timer(0.5).timeout
 	invincible = false
 	
 	
-	if health <= 0:
-		SaveManager.submit_to_hall_of_fame() # 
-		health = max_health 
-		SceneTransition.change_scene("res://Scenes/Maps/Arcadia Hub.tscn", "spawn_hub") 
-		
+	
 
-
+func _die():
+	is_dead = true
+	invincible = true  # nu mai primeste damage
+	velocity = Vector2.ZERO
+	$CollisionShape2D.disabled = true  # inamicii nu il mai pot detecta
+	$Hurtbox/CollisionShape2D.disabled = true  # nu mai poate fi lovit
+	$AnimatedSprite2D.speed_scale = 1.0
+	$AnimatedSprite2D.play("death")
+	await $AnimatedSprite2D.animation_finished
+	$AnimatedSprite2D.visible = false
+	SaveManager.submit_to_hall_of_fame()
+	SceneTransition.change_scene("res://Scenes/Maps/Arcadia Hub.tscn", "spawn_hub")
+	health = max_health
+	is_dead = false
+	invincible = false
+	
 
 
 func update_healt():
