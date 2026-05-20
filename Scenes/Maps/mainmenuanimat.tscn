@@ -213,6 +213,7 @@ audio_bus_name = "Master"
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/settings" to="CanvasLayerMenu" method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Options/back" to="." method="_on_back_options_pressed"]
 [connection signal="value_changed" from="Options/HSlider" to="Options/HSlider" method="_on_value_changed"]

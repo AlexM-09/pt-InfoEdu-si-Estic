@@ -9,7 +9,10 @@ func _ready():
 	btn_confirm.pressed.connect(_on_confirm_pressed)
 	if not get_parent().get_node("VBoxContainer/start").pressed.is_connected(_on_start_pressed):
 		get_parent().get_node("VBoxContainer/start").pressed.connect(_on_start_pressed)
-
+	if not get_parent().get_node("VBoxContainer/settings").pressed.is_connected(_on_settings_pressed):
+		get_parent().get_node("VBoxContainer/settings").pressed.connect(_on_settings_pressed)
+		
+		
 func _on_start_pressed():
 	popup.visible = true
 	name_input.text = SaveManager.data["character_name"]
@@ -24,3 +27,7 @@ func _on_confirm_pressed():
 	print("Nume setat: ", nume)
 	AudioManager.stop_music()
 	get_tree().change_scene_to_file("res://Scenes/CutscenePlayer.tscn")
+
+
+func _on_settings_pressed() -> void:
+	popup.visible = false 
