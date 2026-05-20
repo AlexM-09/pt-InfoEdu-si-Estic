@@ -39,13 +39,13 @@ mouse_filter = 2
 script = ExtResource("1_2sm0f")
 
 [node name="Summer4" type="Sprite2D" parent="." unique_id=1322144823]
-position = Vector2(1019.7778, 552)
-scale = Vector2(0.88560957, 0.8518518)
+position = Vector2(1019.7778, 560.5)
+scale = Vector2(0.88560957, 0.8649692)
 texture = ExtResource("2_t0xyd")
 
 [node name="8Feb91b88Dba4528875b315Fb6c7f52cRemovebgPreview" type="Sprite2D" parent="." unique_id=50039800]
 texture_filter = 1
-position = Vector2(1661.9999, 647.00006)
+position = Vector2(1661.9998, 592.00006)
 scale = Vector2(2.5177207, 2.334273)
 texture = ExtResource("2_4onrk")
 
@@ -116,9 +116,9 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_iiryw")
 
 [node name="Title" type="Label" parent="CanvasLayerMenu/NamePopup" unique_id=526401948]
 layout_mode = 0
-offset_left = 584.0
+offset_left = 613.0
 offset_top = 392.0
-offset_right = 1150.0
+offset_right = 1179.0
 offset_bottom = 510.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_iov1x")
@@ -150,6 +150,7 @@ script = ExtResource("12_k787g")
 music = ExtResource("13_skbqr")
 
 [node name="Options" type="Panel" parent="." unique_id=1859902014]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.23434344
