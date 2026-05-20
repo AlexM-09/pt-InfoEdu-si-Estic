@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://doslvvmdmrymw" path="res://Characters/Player/player.tscn" id="8_u11wl"]
 [ext_resource type="PackedScene" uid="uid://bbraujti2lyqt" path="res://Scenes/SceneEntranceDown.tscn" id="9_ad0ca"]
 [ext_resource type="PackedScene" uid="uid://dbgiohnqlq3x" path="res://Characters/Enemy/medusa.tscn" id="10_0vg6y"]
+[ext_resource type="PackedScene" uid="uid://bp8wjtto4lie7" path="res://Characters/Enemy/enemy_2_cushield.tscn" id="11_3niv0"]
 [ext_resource type="PackedScene" uid="uid://bgdfubqi0ter6" path="res://Scenes/Maps/wave_manager.tscn" id="11_dc8rm"]
-[ext_resource type="PackedScene" uid="uid://cx6qcwm5ybvv7" path="res://Characters/Enemy/emenynoshield.tscn" id="11_vrbd6"]
+[ext_resource type="PackedScene" uid="uid://8ai1t5pujc8a" path="res://Characters/Enemy/enemy_2_noshield.tscn" id="12_sqpjq"]
 [ext_resource type="Script" uid="uid://gxidn75u3fot" path="res://Scenes/Maps/music_controller.gd" id="13_3a5y5"]
 [ext_resource type="AudioStream" uid="uid://dth75xen7evmm" path="res://Art/Others/Minotaur ThemeMb.mp3" id="14_3niv0"]
 
@@ -1554,7 +1555,7 @@ target_spawn_point = "ARENA2 Entrance"
 spawn_point_name = "HubExit5"
 
 [node name="wave_manager" parent="." unique_id=604531861 instance=ExtResource("11_dc8rm")]
-enemy_scenes = Array[PackedScene]([ExtResource("11_vrbd6")])
+enemy_scenes = Array[PackedScene]([ExtResource("11_3niv0"), ExtResource("12_sqpjq")])
 boss_scene = ExtResource("10_0vg6y")
 spawn_radius = 75.0
 spawn_interval = 1.5

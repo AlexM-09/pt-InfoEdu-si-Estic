@@ -11,8 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://bbraujti2lyqt" path="res://Scenes/SceneEntranceDown.tscn" id="9_gjvn7"]
 [ext_resource type="PackedScene" uid="uid://dvxgjyxmu7dmr" path="res://Characters/Enemy/minotaur.tscn" id="10_kcla4"]
 [ext_resource type="Script" uid="uid://gxidn75u3fot" path="res://Scenes/Maps/music_controller.gd" id="10_vlgmf"]
+[ext_resource type="PackedScene" uid="uid://huict0tjbo5h" path="res://Characters/Enemy/enemy_1_cushield.tscn" id="11_0v6ju"]
 [ext_resource type="PackedScene" uid="uid://bgdfubqi0ter6" path="res://Scenes/Maps/wave_manager.tscn" id="11_6226x"]
-[ext_resource type="PackedScene" uid="uid://cx6qcwm5ybvv7" path="res://Characters/Enemy/emenynoshield.tscn" id="12_w8tc6"]
+[ext_resource type="PackedScene" uid="uid://bbje4sxorw3tt" path="res://Characters/Enemy/enemy_1_noshield.tscn" id="12_dk0s7"]
 [ext_resource type="AudioStream" uid="uid://ccxfpxmkldjoo" path="res://Art/Others/DESRERT for level2.mp3" id="14_exhyo"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_8pvot"]
@@ -1575,7 +1576,7 @@ target_spawn_point = "ARENA1 Entrance"
 spawn_point_name = "HubExit4"
 
 [node name="wave_manager" parent="." unique_id=604531861 instance=ExtResource("11_6226x")]
-enemy_scenes = Array[PackedScene]([ExtResource("12_w8tc6")])
+enemy_scenes = Array[PackedScene]([ExtResource("11_0v6ju"), ExtResource("12_dk0s7")])
 boss_scene = ExtResource("10_kcla4")
 spawn_radius = 75.0
 spawn_interval = 1.5
