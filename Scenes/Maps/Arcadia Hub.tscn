@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bbraujti2lyqt" path="res://Scenes/SceneEntranceDown.tscn" id="10_c1lj7"]
 [ext_resource type="AudioStream" uid="uid://d4k0a4p74p8mf" path="res://Art/Others/village Themee.mp3" id="11_lmkp3"]
 [ext_resource type="Script" uid="uid://gxidn75u3fot" path="res://Scenes/Maps/music_controller.gd" id="12_ibmu0"]
-[ext_resource type="Script" uid="uid://br7fi2104xmgq" path="res://Scenes/Maps/poi.gd" id="13_lp6rn"]
-[ext_resource type="PackedScene" uid="uid://dh1oyvf8wjys3" path="res://Minimap.tscn" id="14_j5nwm"]
+[ext_resource type="Script" path="res://Scenes/Maps/poi.gd" id="13_lp6rn"]
+[ext_resource type="PackedScene" path="res://Minimap.tscn" id="14_j5nwm"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_8pvot"]
 tile_data = PackedInt32Array(0, 1, 805306389, 65536, 1, 1342177301, 1, 1, 1610612757, 65537, 1, 21)
@@ -1863,6 +1863,7 @@ position = Vector2(1, 5)
 visible = false
 position = Vector2(-479.5, 7.5)
 scale = Vector2(1, 6.2481465)
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Walls" unique_id=1799775142]
 scale = Vector2(0.99999994, 0.99999994)

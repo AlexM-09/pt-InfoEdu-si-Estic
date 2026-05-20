@@ -282,7 +282,10 @@ height = 24.15
 
 [node name="player" type="CharacterBody2D" unique_id=1176532510]
 z_index = 1
+collision_mask = 2
 script = ExtResource("1_uie8r")
+max_health = 700
+health = 700
 attackdamage = 25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1743670198]
@@ -296,9 +299,10 @@ position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_uie8r")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=372225172]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(3, 3)
 
 [node name="AttackHitbox" type="Area2D" parent="." unique_id=57934912]
+visible = false
 position = Vector2(0, -12)
 collision_mask = 2
 
@@ -307,6 +311,7 @@ shape = SubResource("CircleShape2D_uie8r")
 debug_color = Color(0.742466, 0.030032156, 1.92523e-07, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1787149583]
+visible = false
 position = Vector2(0, -12)
 collision_layer = 4
 monitoring = false

@@ -323,6 +323,7 @@ animations = [{
 
 [node name="medusa" type="CharacterBody2D" unique_id=135063464 groups=["boss"]]
 z_index = 1
+collision_layer = 2
 script = ExtResource("1_1fj45")
 snake_scene = ExtResource("2_keo1d")
 

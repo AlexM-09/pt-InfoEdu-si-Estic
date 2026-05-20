@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dsr7tiqbo80yp" path="res://Art/classical_temple_tiles.png" id="5_le18y"]
 [ext_resource type="PackedScene" uid="uid://doslvvmdmrymw" path="res://Characters/Player/player.tscn" id="5_y2v78"]
 [ext_resource type="PackedScene" uid="uid://bbraujti2lyqt" path="res://Scenes/SceneEntranceDown.tscn" id="6_hxlp2"]
-[ext_resource type="Script" path="res://Scenes/Maps/statuie_interaction.gd" id="8_bt7bx"]
+[ext_resource type="Script" uid="uid://bdyo3845p2qd0" path="res://Scenes/Maps/statuie_interaction.gd" id="8_bt7bx"]
 [ext_resource type="FontFile" uid="uid://sw05w6je7nyj" path="res://Art/Others/DIOGENES.ttf" id="9_ou7xi"]
 [ext_resource type="Script" uid="uid://bx8km80sg2htu" path="res://Scenes/Maps/canvas_layer.gd" id="10_ou7xi"]
 [ext_resource type="Texture2D" uid="uid://busfo5l8wt3gl" path="res://Art/Humble Gift - v1.3/PNG/SpriteSheet.png" id="11_24v15"]
@@ -966,6 +966,7 @@ layer_3/tile_data = PackedInt32Array(-196608, 1114117, 26, -131073, 1114117, 26)
 position = Vector2(1, -7)
 
 [node name="Invisible Walls" type="StaticBody2D" parent="." unique_id=1011174635]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Walls" unique_id=338233898]
 position = Vector2(0, 78)

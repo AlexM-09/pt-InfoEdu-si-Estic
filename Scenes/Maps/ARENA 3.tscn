@@ -14,7 +14,6 @@
 [ext_resource type="AudioStream" uid="uid://ccxfpxmkldjoo" path="res://Art/Others/DESRERT for level2.mp3" id="12_uxoga"]
 [ext_resource type="PackedScene" uid="uid://bgdfubqi0ter6" path="res://Scenes/Maps/wave_manager.tscn" id="13_j0ijh"]
 [ext_resource type="PackedScene" uid="uid://cx6qcwm5ybvv7" path="res://Characters/Enemy/emenynoshield.tscn" id="14_fjrue"]
-[ext_resource type="PackedScene" uid="uid://k6cq4a872jyu" path="res://Characters/Enemy/enemy_3_shield.tscn" id="15_177s3"]
 [ext_resource type="PackedScene" uid="uid://cx2jv3laa2bmw" path="res://Characters/Enemy/ciclop.tscn" id="16_gfqj1"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_8pvot"]
@@ -1616,6 +1615,7 @@ layer_3/tile_data = PackedInt32Array(-393239, 1048581, 26, -393229, 1048581, 26,
 [node name="player" parent="." unique_id=1176532510 instance=ExtResource("8_tj8cq")]
 
 [node name="Invisible Walls" type="StaticBody2D" parent="." unique_id=545876256]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Walls" unique_id=1094996711]
 position = Vector2(1, 155)
@@ -1645,7 +1645,7 @@ script = ExtResource("11_uxoga")
 music = ExtResource("12_uxoga")
 
 [node name="wave_manager" parent="." unique_id=604531861 instance=ExtResource("13_j0ijh")]
-enemy_scenes = Array[PackedScene]([ExtResource("14_fjrue"), ExtResource("15_177s3")])
+enemy_scenes = Array[PackedScene]([ExtResource("14_fjrue")])
 boss_scene = ExtResource("16_gfqj1")
 spawn_radius = 75.0
 spawn_interval = 1.5
