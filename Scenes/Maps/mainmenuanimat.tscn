@@ -39,18 +39,18 @@ mouse_filter = 2
 script = ExtResource("1_2sm0f")
 
 [node name="Summer4" type="Sprite2D" parent="." unique_id=1322144823]
-position = Vector2(1019.7778, 552)
-scale = Vector2(0.88560957, 0.8518518)
+position = Vector2(1019.7778, 566)
+scale = Vector2(0.88560957, 0.8734568)
 texture = ExtResource("2_t0xyd")
 
 [node name="8Feb91b88Dba4528875b315Fb6c7f52cRemovebgPreview" type="Sprite2D" parent="." unique_id=50039800]
 texture_filter = 1
-position = Vector2(1661.9999, 647.00006)
-scale = Vector2(2.5177207, 2.334273)
+position = Vector2(1661.9999, 592.86914)
+scale = Vector2(2.5177207, 2.358458)
 texture = ExtResource("2_4onrk")
 
 [node name="Player" type="Sprite2D" parent="." unique_id=1018698145]
-position = Vector2(1360, 944.00006)
+position = Vector2(1359, 927)
 scale = Vector2(6.6111493, 4.9117036)
 texture = ExtResource("3_iov1x")
 region_enabled = true
@@ -58,7 +58,7 @@ region_rect = Rect2(257, 136, 15, 4)
 metadata/_edit_group_ = true
 
 [node name="GladiatorSpriteSheet" type="Sprite2D" parent="." unique_id=683721979]
-position = Vector2(1354.9805, 879.6965)
+position = Vector2(1355, 862)
 scale = Vector2(-6.998499, 6.7986298)
 texture = ExtResource("4_2sm0f")
 region_enabled = true

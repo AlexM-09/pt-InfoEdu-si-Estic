@@ -357,6 +357,7 @@ height = 50.0
 
 [node name="minotaur" type="CharacterBody2D" unique_id=668503065]
 z_index = 1
+collision_layer = 2
 script = ExtResource("1_ycl2r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=852409065]

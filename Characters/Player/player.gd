@@ -1,5 +1,5 @@
 extends CharacterBody2D
-var SPEED = 100
+@export var SPEED = 100
 var current_direction = "down"
 var is_attacking = false
 var is_dashing = false

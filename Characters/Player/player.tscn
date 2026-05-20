@@ -59,6 +59,34 @@ region = Rect2(160, 128, 32, 32)
 atlas = ExtResource("2_qqi7k")
 region = Rect2(192, 128, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j341n"]
+atlas = ExtResource("2_qqi7k")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cue0d"]
+atlas = ExtResource("2_qqi7k")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqsbk"]
+atlas = ExtResource("2_qqi7k")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf5fp"]
+atlas = ExtResource("2_qqi7k")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osktb"]
+atlas = ExtResource("2_qqi7k")
+region = Rect2(128, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vev3"]
+atlas = ExtResource("2_qqi7k")
+region = Rect2(160, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klx3t"]
+atlas = ExtResource("2_qqi7k")
+region = Rect2(192, 128, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wbrq5"]
 atlas = ExtResource("2_qqi7k")
 region = Rect2(0, 0, 32, 32)
@@ -167,6 +195,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_j341n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cue0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqsbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf5fp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osktb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vev3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klx3t")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wbrq5")
 }, {
 "duration": 1.0,
@@ -228,12 +282,15 @@ height = 24.15
 
 [node name="player" type="CharacterBody2D" unique_id=1176532510]
 z_index = 1
+collision_mask = 2
 script = ExtResource("1_uie8r")
+max_health = 700
+health = 700
 attackdamage = 25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1743670198]
 sprite_frames = SubResource("SpriteFrames_ojnir")
-animation = &"dash"
+animation = &"death"
 speed_scale = 2.5
 offset = Vector2(0, -15)
 
@@ -242,9 +299,10 @@ position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_uie8r")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=372225172]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(3, 3)
 
 [node name="AttackHitbox" type="Area2D" parent="." unique_id=57934912]
+visible = false
 position = Vector2(0, -12)
 collision_mask = 2
 
@@ -253,6 +311,7 @@ shape = SubResource("CircleShape2D_uie8r")
 debug_color = Color(0.742466, 0.030032156, 1.92523e-07, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1787149583]
+visible = false
 position = Vector2(0, -12)
 collision_layer = 4
 monitoring = false
