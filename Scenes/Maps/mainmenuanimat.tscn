@@ -130,10 +130,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 708.0
-offset_top = 133.0
-offset_right = 1036.0
-offset_bottom = 142.99997
+offset_left = 692.0
+offset_top = 511.0
+offset_right = 1020.0
+offset_bottom = 520.99994
 
 [node name="BtnConfirm" type="Button" parent="CanvasLayerMenu/NamePopup" unique_id=555467825]
 layout_mode = 0
