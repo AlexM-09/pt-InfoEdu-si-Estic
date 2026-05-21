@@ -21,9 +21,9 @@ var boss_defeated: bool = false
 
 @onready var timer_label = $UI/WaveTimer
 @onready var level_up_menu = $UI/LevelUpMenu
-@onready var btn1 = $UI/LevelUpMenu/WaveCompleteLabel/HBoxContainer/Btn1
-@onready var btn2 = $UI/LevelUpMenu/WaveCompleteLabel/HBoxContainer/Btn2
-@onready var btn3 = $UI/LevelUpMenu/WaveCompleteLabel/HBoxContainer/Btn3
+@onready var btn1 =$UI/LevelUpMenu/HBoxContainer/Btn1
+@onready var btn2 = $UI/LevelUpMenu/HBoxContainer/Btn2
+@onready var btn3 = $UI/LevelUpMenu/HBoxContainer/Btn3
 @export var map_min: Vector2 = Vector2(-360, -120)
 @export var map_max: Vector2 = Vector2(360, 120)
 @onready var wave_complete_label = $UI/LevelUpMenu/WaveCompleteLabel
@@ -42,6 +42,8 @@ var enemy_health_multiplier: float = 1.0
 var enemy_damage_multiplier: float = 1.0
 
 func _ready():
+	wave_complete_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	wave_complete_label.offset_left -= 100 
 	player = get_tree().get_first_node_in_group("player")
 	
 	if SaveManager.is_level_completed(level_index):
@@ -248,7 +250,7 @@ func show_level_up_menu():
 	if is_boss_break:
 		wave_complete_label.text = "Boss-ul vine!\nAlege un upgrade:"
 	else:
-		wave_complete_label.text = "Wave %d completa!\nAlege un upgrade:" % current_wave
+		wave_complete_label.text = "Wave %d completat!\nAlege un upgrade:" % current_wave
 
 	level_up_menu.visible = true
 	level_up_pending = true
@@ -281,25 +283,35 @@ func _setup_button(btn: Button, upgrade: Dictionary):
 	var rarity = upgrade["rarity"]
 	var value = upgrade["value"]
 	var descriere = ""
+	var icon_path = ""
 	match upgrade["type"]:
 		"hp":
 			descriere = "Max HP +%d" % value
+			icon_path = "res://Assets/iconite/heart_16x16.png"
 		"armor":
 			descriere = "Armor +%d" % value
+			icon_path = "res://Assets/iconite/armura.png"
 		"attack":
 			descriere = "Attack +%d%%" % value
+			icon_path = "res://Assets/iconite/atac.png"
 		"speed":
 			descriere = "Speed +%d" % value
+			icon_path = "res://Assets/iconite/skibidiviteza1.png"
 
 	btn.text = "[%s]\n%s" % [rarity["name"], descriere]
 	btn.add_theme_color_override("font_color", rarity["color"])
+	if icon_path != "":
+		var texture = load(icon_path)
+		if texture:
+			btn.icon = texture
+			btn.icon_alignment = HORIZONTAL_ALIGNMENT_LEFT
 
 func _update_stats_label():
-	stats_label.text = """Stats curente:
-❤ HP: %d / %d
-🛡 Armor: %.0f
-⚔ Attack Bonus: %.0f%%
-👟 Speed: %d""" % [
+	stats_label.text = """Stats:
+ HP: %d / %d
+ Armor: %.0f
+ Attack Bonus: %.0f%%
+ Speed: %d""" % [
 		player.health,
 		player.max_health,
 		player.armor,

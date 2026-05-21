@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b78me2y0qbpu" path="res://Scripts/wave_manager.gd" id="1_ys30t"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ys30t"]
+bg_color = Color(0.18039216, 0.18039216, 0.18039216, 0.8392157)
+
 [node name="wave_manager" type="Node2D" unique_id=604531861]
 script = ExtResource("1_ys30t")
 
@@ -26,31 +29,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -235.0
-offset_top = -113.36401
-offset_right = 235.0
-offset_bottom = 113.36401
+offset_left = -410.0
+offset_top = -159.0
+offset_right = 188.0
+offset_bottom = 140.36401
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 
-[node name="StatsLabel" type="Label" parent="UI/LevelUpMenu" unique_id=750506198]
-layout_mode = 0
-offset_left = 472.0
-offset_top = 1.3640137
-offset_right = 587.0
-offset_bottom = 224.36401
-
-[node name="WaveCompleteLabel" type="Label" parent="UI/LevelUpMenu" unique_id=2109284005]
-process_mode = 3
-layout_mode = 0
-offset_left = 72.0
-offset_top = -62.635986
-offset_right = 402.0
-offset_bottom = 19.364014
-text = "Wave completed: Alege un Upgrade!! HEHE"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/LevelUpMenu/WaveCompleteLabel" unique_id=1426170115]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/LevelUpMenu" unique_id=1426170115]
 process_mode = 3
 layout_mode = 1
 anchors_preset = 8
@@ -58,27 +45,52 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = 208.0
-offset_right = 200.0
-offset_bottom = 228.0
+offset_left = -198.0
+offset_top = 67.5
+offset_right = 202.0
+offset_bottom = 98.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Btn1" type="Button" parent="UI/LevelUpMenu/WaveCompleteLabel/HBoxContainer" unique_id=1241541214]
+[node name="Btn1" type="Button" parent="UI/LevelUpMenu/HBoxContainer" unique_id=1241541214]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 text = "dasdasdASDASDWA"
 
-[node name="Btn2" type="Button" parent="UI/LevelUpMenu/WaveCompleteLabel/HBoxContainer" unique_id=29399770]
+[node name="Btn2" type="Button" parent="UI/LevelUpMenu/HBoxContainer" unique_id=29399770]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 text = "VQWEVQWEVASDVQW"
 
-[node name="Btn3" type="Button" parent="UI/LevelUpMenu/WaveCompleteLabel/HBoxContainer" unique_id=80882836]
+[node name="Btn3" type="Button" parent="UI/LevelUpMenu/HBoxContainer" unique_id=80882836]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="StatsLabel" type="Label" parent="UI/LevelUpMenu" unique_id=750506198]
+layout_mode = 0
+offset_left = 598.0
+offset_top = 0.36401367
+offset_right = 768.0
+offset_bottom = 299.364
+theme_override_styles/normal = SubResource("StyleBoxFlat_ys30t")
+
+[node name="WaveCompleteLabel" type="Label" parent="UI/LevelUpMenu" unique_id=2109284005]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -198.0
+offset_top = -59.317993
+offset_right = 297.0
+offset_bottom = 22.682007
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "Wave completed: Alege un Upgrade!!"
