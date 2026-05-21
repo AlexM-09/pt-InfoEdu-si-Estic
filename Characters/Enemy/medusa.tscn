@@ -325,6 +325,8 @@ animations = [{
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_1fj45")
+max_health = 300
+health = 300
 damage = 80
 snake_scene = ExtResource("2_keo1d")
 

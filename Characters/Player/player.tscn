@@ -284,8 +284,8 @@ height = 24.15
 z_index = 1
 collision_mask = 3
 script = ExtResource("1_uie8r")
-max_health = 700
-health = 700
+max_health = 150
+health = 150
 attackdamage = 25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1743670198]
