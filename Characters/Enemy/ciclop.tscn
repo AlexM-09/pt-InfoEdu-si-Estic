@@ -10,9 +10,6 @@ height = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jlyt8"]
 radius = 237.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ea0qv"]
-radius = 39.45884
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k48gb"]
 radius = 49.0
 height = 99.0
@@ -428,7 +425,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ciclop" type="CharacterBody2D" unique_id=1257901619]
+[node name="ciclop" type="CharacterBody2D" unique_id=1257901619 groups=["boss"]]
+z_index = 1
+z_as_relative = false
 collision_layer = 2
 script = ExtResource("1_jlyt8")
 
@@ -443,16 +442,7 @@ position = Vector2(0, -41)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area" unique_id=1381527293]
 shape = SubResource("CircleShape2D_jlyt8")
 
-[node name="AttackHitbox" type="Area2D" parent="." unique_id=1371173714]
-position = Vector2(0, -38)
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox" unique_id=2111585075]
-shape = SubResource("CircleShape2D_ea0qv")
-debug_color = Color(0.9647059, 0.13725491, 0.05490196, 0.41960785)
-
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1465282785]
-visible = false
 position = Vector2(0, -38)
 collision_layer = 2
 
@@ -471,7 +461,7 @@ show_percentage = false
 
 [node name="animation_manager" type="Node2D" parent="." unique_id=2119661451]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="animation_manager" unique_id=419884896 groups=["boss"]]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="animation_manager" unique_id=419884896]
 position = Vector2(1, -64)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_7u5vd")
@@ -479,5 +469,3 @@ animation = &"hurt"
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
-[connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
-[connection signal="area_exited" from="AttackHitbox" to="." method="_on_attack_hitbox_area_exited"]

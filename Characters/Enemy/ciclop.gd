@@ -46,6 +46,19 @@ func _physics_process(_delta):
 	if player_chase and player != null:
 		var dist = global_position.distance_to(player.global_position)
 		var direction = (player.global_position - global_position).normalized()
+	
+	# Atac bazat pe distanta ca la minotaur
+		if dist < 55 and not attack_cooldown_timer and not is_attacking and not is_tired:
+			is_attacking = true
+			attack_cooldown_timer = true
+			velocity = Vector2.ZERO
+			if direction.x > 0:
+				sprite_node.scale.x = 1
+			else:
+				sprite_node.scale.x = -1
+			anim.play("attack")
+			return
+	
 		if dist > 50:
 			velocity = direction * speed
 		else:
@@ -56,10 +69,6 @@ func _physics_process(_delta):
 			sprite_node.scale.x = -1
 		if anim.animation != "walk":
 			anim.play("walk")
-	else:
-		velocity = Vector2.ZERO
-		if anim.animation != "idle":
-			anim.play("idle")
 	move_and_slide()
 
 func _on_detection_area_body_entered(body):
@@ -99,22 +108,38 @@ func _on_animation_finished():
 		return
 	if anim.animation == "attack":
 		is_attacking = false
-		_do_damage()
+		if anim.animation == "attack":
+			is_attacking = false
+		# Damage bazat pe distanta
+		if player != null and is_instance_valid(player):
+			var dist = global_position.distance_to(player.global_position)
+			if dist < 45:
+				player.take_damage(damage)
 		attack_count += 1
-		attack_cooldown_timer = true
 		await get_tree().create_timer(1.5).timeout
 		attack_cooldown_timer = false
 		if attack_count >= attacks_before_tired:
 			_become_tired()
 			return
-		var overlapping = $AttackHitbox.get_overlapping_areas()
-		for area in overlapping:
-			if area.name == "Hurtbox":
-				player_in_hitbox = true
-				player_hurtbox = area
-				is_attacking = true
-				anim.play("attack")
+		if player_chase:
+			anim.play("walk")
+		else:
+			anim.play("idle")
+			attack_count += 1
+			attack_cooldown_timer = true
+			await get_tree().create_timer(1.5).timeout
+			attack_cooldown_timer = false
+			if attack_count >= attacks_before_tired:
+				_become_tired()
 				return
+			var overlapping = $AttackHitbox.get_overlapping_areas()
+			for area in overlapping:
+				if area.name == "Hurtbox":
+					player_in_hitbox = true
+					player_hurtbox = area
+					is_attacking = true
+					anim.play("attack")
+					return
 		if player_chase:
 			anim.play("walk")
 		else:
