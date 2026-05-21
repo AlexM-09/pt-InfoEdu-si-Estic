@@ -105,6 +105,11 @@ func play_anim(direction):
 
 func player_attack():
 	if Input.is_action_just_pressed("attack") and !is_attacking:
+		if get_viewport().gui_is_drag_successful():
+			return
+		var mouse_pos = get_viewport().get_mouse_position()
+		if get_viewport().gui_get_hovered_control() != null:
+			return
 		is_attacking = true
 		$AnimatedSprite2D.speed_scale = 2.0
 		$AnimatedSprite2D.play("attack")
