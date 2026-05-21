@@ -1651,3 +1651,4 @@ boss_scene = ExtResource("16_gfqj1")
 spawn_radius = 75.0
 spawn_interval = 1.5
 wave_duration = 45.0
+level_index = 2

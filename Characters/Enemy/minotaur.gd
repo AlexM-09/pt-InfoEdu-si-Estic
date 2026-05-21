@@ -10,6 +10,7 @@ var player_chase: bool = false
 var is_dead = false
 var is_hurt = false
 @onready var sprite_node = $animation_manager
+var damage_cooldown: bool = false
 
 # Dash
 var is_dashing = false
@@ -188,17 +189,19 @@ func take_damage(attackdamage):
 	is_dash_windup = false
 	velocity = Vector2.ZERO
 	anim.play("hurt")
-	await anim.animation_finished
+	await get_tree().create_timer(1.0).timeout  # timeout siguranta
 	is_hurt = false
 	if health <= 0:
 		SaveManager.add_kill()
 		is_dead = true
 		call_deferred("_die")
+		return
+	await get_tree().create_timer(0.4).timeout
+	damage_cooldown = false
+	if player_chase:
+		anim.play("walk")
 	else:
-		if player_chase:
-			anim.play("walk")
-		else:
-			anim.play("idle")
+		anim.play("idle")
 
 func _die():
 	is_dead = true

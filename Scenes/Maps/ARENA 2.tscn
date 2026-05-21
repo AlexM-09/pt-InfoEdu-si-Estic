@@ -1560,6 +1560,7 @@ boss_scene = ExtResource("10_0vg6y")
 spawn_radius = 75.0
 spawn_interval = 1.5
 wave_duration = 45.0
+level_index = 1
 max_waves = 3
 
 [node name="MusicController" type="Node" parent="." unique_id=104953840]
