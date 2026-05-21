@@ -369,7 +369,9 @@ shape = SubResource("CapsuleShape2D_kdtsv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="animation_manager" unique_id=231797969]
 position = Vector2(4, -16)
 sprite_frames = SubResource("SpriteFrames_62wmk")
-animation = &"walk"
+animation = &"attack"
+frame = 12
+frame_progress = 0.5634553
 
 [node name="minotaur_healthbar" type="ProgressBar" parent="." unique_id=115060443]
 modulate = Color(0.35480174, 0.22198883, 0.16632509, 1)

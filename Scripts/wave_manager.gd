@@ -47,7 +47,10 @@ func _ready():
 	player = get_tree().get_first_node_in_group("player")
 	
 	if SaveManager.is_level_completed(level_index):
-		max_waves = 9999 
+		max_waves = 9999
+		print("Level deja completat, max_waves = 9999")
+	else:
+		print("Level nou, max_waves = ", max_waves)
 	
 	if scene_entrance:
 		scene_entrance.monitoring = false

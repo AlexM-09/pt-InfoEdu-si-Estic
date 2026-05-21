@@ -1582,6 +1582,7 @@ spawn_radius = 75.0
 spawn_interval = 1.5
 wave_duration = 5.0
 break_duration = 5.0
+max_waves = 2
 
 [node name="MusicController" type="Node" parent="." unique_id=574096355]
 script = ExtResource("10_vlgmf")
