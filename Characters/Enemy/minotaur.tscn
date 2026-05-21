@@ -7,18 +7,6 @@
 radius = 8.0
 height = 16.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ycl2r"]
-atlas = ExtResource("1_q2vee")
-region = Rect2(0, 192, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_21asu"]
-atlas = ExtResource("1_q2vee")
-region = Rect2(96, 192, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1wm8o"]
-atlas = ExtResource("1_q2vee")
-region = Rect2(192, 192, 96, 96)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_y1miv"]
 atlas = ExtResource("1_q2vee")
 region = Rect2(288, 192, 96, 96)
@@ -186,15 +174,6 @@ region = Rect2(672, 96, 96, 96)
 [sub_resource type="SpriteFrames" id="SpriteFrames_62wmk"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ycl2r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_21asu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1wm8o")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y1miv")
 }, {
@@ -370,15 +349,15 @@ shape = SubResource("CapsuleShape2D_kdtsv")
 position = Vector2(4, -16)
 sprite_frames = SubResource("SpriteFrames_62wmk")
 animation = &"attack"
-frame = 12
-frame_progress = 0.5634553
+frame = 8
+frame_progress = 0.2454968
 
 [node name="minotaur_healthbar" type="ProgressBar" parent="." unique_id=115060443]
-modulate = Color(0.35480174, 0.22198883, 0.16632509, 1)
-offset_left = -33.0
-offset_top = 11.0
-offset_right = 34.0
-offset_bottom = 21.0
+modulate = Color(0.90030324, 0, 0.15639701, 1)
+offset_left = -32.0
+offset_top = -57.0
+offset_right = 35.0
+offset_bottom = -47.0
 show_percentage = false
 
 [node name="detection_area" type="Area2D" parent="." unique_id=1280208528]

@@ -311,7 +311,6 @@ shape = SubResource("CircleShape2D_uie8r")
 debug_color = Color(0.742466, 0.030032156, 1.92523e-07, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1787149583]
-visible = false
 position = Vector2(0, -12)
 collision_layer = 4
 monitoring = false
