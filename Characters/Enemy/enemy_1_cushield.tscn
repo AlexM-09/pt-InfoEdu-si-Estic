@@ -10,7 +10,7 @@
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu0tg"]
-radius = 87.84
+radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3tc4b"]
 radius = 10.5
@@ -329,7 +329,7 @@ position = Vector2(0, -0.25)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="animation manager" unique_id=876703590]
 position = Vector2(8, -23)
 sprite_frames = SubResource("SpriteFrames_5qhc6")
-animation = &"attack"
+animation = &"idle"
 speed_scale = 2.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1337287518]

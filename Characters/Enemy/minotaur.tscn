@@ -338,6 +338,8 @@ height = 50.0
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_ycl2r")
+max_health = 250
+health = 250
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=852409065]
 position = Vector2(0, -7)

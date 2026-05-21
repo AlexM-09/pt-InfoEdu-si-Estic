@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var btn_back = $HallOfFamePanel/BtnBack
 
 func _ready():
+	
 	panel.visible = false
 	btn_back.pressed.connect(_on_back_pressed)
 
