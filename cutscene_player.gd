@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 @export var next_scene: String = ""
+@export var spawn_point: String = ""
 
 @onready var video = $VideoStreamPlayer
 @onready var skip_button = $SkipButton
@@ -19,4 +20,7 @@ func _skip():
 
 func _go_to_next_scene():
 	if next_scene != "":
-		get_tree().change_scene_to_file(next_scene)
+		if spawn_point != "":
+			SceneTransition.change_scene(next_scene, spawn_point)
+		else:
+			get_tree().change_scene_to_file(next_scene)
