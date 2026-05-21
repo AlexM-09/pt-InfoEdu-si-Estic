@@ -4,10 +4,9 @@ extends CharacterBody2D
 var player: Node2D = null
 var player_chase: bool = false
 @onready var anim: AnimatedSprite2D = $animation_manager/AnimatedSprite2D
-@export var max_health = 50
-@export var health = 50
+@export var max_health = 150
+@export var health = 150
 @export var damage = 20
-var attack_cooldown = false
 var player_in_hitbox = false
 var player_hurtbox = null
 var is_dead = false
@@ -17,6 +16,7 @@ var is_hurt = false
 var attack_cooldown_timer = false
 var is_spawning = false
 var _pending_spawn_count = 0
+var _attack_coroutine_active = false  # previne overlap de coroutine attack
 
 var phase = 1
 var phase1_speed = 40.0
@@ -33,6 +33,7 @@ var spawn_timer = 0.0
 var active_snakes = []
 
 func _ready():
+	print("[MEDUSA] Ready")
 	anim.play("idle")
 	anim.animation_finished.connect(_on_animation_finished)
 	call_deferred("_setup_healthbar")
@@ -40,13 +41,15 @@ func _ready():
 	damage = phase1_damage
 	$medusa_healthbar.visible = false
 	spawn_timer = phase1_spawn_interval
+	print("[MEDUSA] spawn_timer setat la: ", spawn_timer)
 
 func _setup_healthbar():
 	if has_node("medusa_healthbar"):
 		$medusa_healthbar.max_value = max_health
 		$medusa_healthbar.value = max_health
+		print("[MEDUSA] Healthbar setat, max=", max_health)
 	else:
-		print("medusa_healthbar nu a fost gasit!")
+		print("[MEDUSA] EROARE: medusa_healthbar nu a fost gasit!")
 
 func _physics_process(delta):
 	if is_dead or is_hurt:
@@ -58,20 +61,22 @@ func _physics_process(delta):
 
 	check_phase()
 
-	# Miscarea si animatia PRIMA
 	if player_chase and player != null:
 		var dist = global_position.distance_to(player.global_position)
 		var direction = (player.global_position - global_position).normalized()
-		if dist > 40:
+		if dist > 30:
 			velocity = direction * speed
+			if anim.animation != "walk":
+				print("[MEDUSA] Incepe sa mearga, dist=", dist)
+				anim.play("walk")
 		else:
 			velocity = Vector2.ZERO
+			if anim.animation != "walk" and anim.animation != "idle":
+				anim.play("walk")
 		if direction.x > 0:
 			sprite_node.scale.x = 1
 		elif direction.x < 0:
 			sprite_node.scale.x = -1
-		if anim.animation != "walk":
-			anim.play("walk")
 	else:
 		velocity = Vector2.ZERO
 		if anim.animation != "idle":
@@ -79,47 +84,69 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	# Spawn DUPA move_and_slide
 	if player != null:
 		spawn_timer -= delta
 		if spawn_timer <= 0:
 			var count = 2 if phase == 1 else 4
+			print("[MEDUSA] Spawn timer expirat, spawn ", count, " serpi, faza=", phase)
 			spawn_snake(count)
 
 func _on_detection_area_body_entered(body):
 	if body.name == "player":
+		print("[MEDUSA] Player detectat")
 		player = body
 		player_chase = true
 
 func _on_detection_area_body_exited(body):
 	if body.name == "player":
+		print("[MEDUSA] Player a iesit din zona")
 		player = null
 		player_chase = false
 
 func take_damage(attackdamage):
 	if is_dead or is_hurt:
+		print("[MEDUSA] take_damage ignorat: is_dead=", is_dead, " is_hurt=", is_hurt)
 		return
+	print("[MEDUSA] Primit damage: ", attackdamage, " health inainte: ", health)
 	health -= attackdamage
 	update_health()
 	is_hurt = true
 	is_attacking = false
 	is_spawning = false
+	_pending_spawn_count = 0
+	attack_cooldown_timer = false
+	_attack_coroutine_active = false
+	player_hurtbox = null
 	anim.play("hurt")
+	print("[MEDUSA] Animatie hurt pornita")
 	await anim.animation_finished
+	# Verifica ca semnalul e chiar pentru "hurt" si nu altceva
+	if anim.animation != "hurt" and anim.animation != "idle" and anim.animation != "walk":
+		# animatia a fost schimbata intre timp, nu continua
+		return
+	print("[MEDUSA] Animatie hurt terminata")
 	is_hurt = false
 	if health <= 0:
+		print("[MEDUSA] Health <= 0, moare")
 		is_dead = true
 		call_deferred("_die")
 	else:
+		# Reseteaza spawn timer ca sa nu spawnam imediat dupa hurt
+		spawn_timer = phase1_spawn_interval if phase == 1 else phase2_spawn_interval
 		if player_chase:
 			anim.play("walk")
 		else:
 			anim.play("idle")
 
 func _on_animation_finished():
-	# Spawn se gestioneaza PRIMUL, inaintea oricarui return
+	print("[MEDUSA] Animatie terminata: ", anim.animation, " is_hurt=", is_hurt, " is_dead=", is_dead, " is_spawning=", is_spawning, " is_attacking=", is_attacking)
+
+	if is_dead:
+		return
+
 	if anim.animation == "spawn":
 		is_spawning = false
+		print("[MEDUSA] Spawn animatie terminata, spawnam ", _pending_spawn_count, " serpi")
 		if snake_scene != null:
 			for i in range(_pending_spawn_count):
 				var angle = randf() * TAU
@@ -128,6 +155,9 @@ func _on_animation_finished():
 				get_parent().add_child(snake)
 				snake.global_position = spawn_pos
 				active_snakes.append(snake)
+				print("[MEDUSA] Serpe spawnat la pozitia: ", spawn_pos)
+		else:
+			print("[MEDUSA] EROARE: snake_scene e null!")
 		_pending_spawn_count = 0
 		if player_chase:
 			anim.play("walk")
@@ -135,55 +165,87 @@ func _on_animation_finished():
 			anim.play("idle")
 		return
 
-	# Abia acum verificam is_hurt / is_dead
-	if is_hurt or is_dead:
+	if is_hurt:
+		print("[MEDUSA] Ignorat din cauza is_hurt=", is_hurt)
 		return
 
 	if anim.animation == "attack":
-		is_attacking = false
-		_do_damage()
-		attack_cooldown_timer = true
-		await get_tree().create_timer(1.5).timeout
+		_finish_attack()
+
+func _finish_attack():
+	# Daca o coroutine de attack mai ruleaza, nu porni alta
+	if _attack_coroutine_active:
+		print("[MEDUSA] _finish_attack: coroutine deja activa, ignorat")
+		return
+	_attack_coroutine_active = true
+
+	var saved_hurtbox = player_hurtbox
+	is_attacking = false
+
+	# Verifica daca player e inca in hitbox la finalul animatiei
+	if saved_hurtbox != null and is_instance_valid(saved_hurtbox):
+		var overlapping = $AttackHitbox.get_overlapping_areas()
+		if overlapping.has(saved_hurtbox):
+			print("[MEDUSA] Player inca in hitbox la final, dau damage")
+			saved_hurtbox.get_parent().take_damage(damage)
+		else:
+			print("[MEDUSA] Player a iesit din hitbox, nu dau damage")
+	else:
+		print("[MEDUSA] Hurtbox null, nu dau damage")
+
+	attack_cooldown_timer = true
+	await get_tree().create_timer(1.5).timeout
+
+	_attack_coroutine_active = false
+
+	# Dupa await, verifica daca starea s-a schimbat
+	if is_dead or is_hurt:
 		attack_cooldown_timer = false
+		return
+
+	attack_cooldown_timer = false
+
+	# Daca spawn-ul e in curs sau tocmai a inceput, nu interveni
+	if is_spawning:
+		print("[MEDUSA] Post-attack: spawn in curs, las animatia de spawn sa ruleze")
+		return
+
+	# Incearca sa reatace daca player e inca in hitbox
+	if not is_spawning:
 		var overlapping = $AttackHitbox.get_overlapping_areas()
 		for area in overlapping:
 			if area.name == "Hurtbox":
-				player_in_hitbox = true
 				player_hurtbox = area
 				is_attacking = true
 				anim.play("attack")
+				print("[MEDUSA] Reatac dupa cooldown")
 				return
-		if player_chase:
-			anim.play("walk")
-		else:
-			anim.play("idle")
+
+	# Altfel, revine la walk/idle
+	if player_chase:
+		anim.play("walk")
+	else:
+		anim.play("idle")
 
 func _die():
+	print("[MEDUSA] _die apelat")
 	is_dead = true
 	player_in_hitbox = false
 	player_hurtbox = null
 	$AttackHitbox/CollisionShape2D.disabled = true
 	player_chase = false
 	velocity = Vector2.ZERO
-	# Omoara toti serpii activi
 	for snake in active_snakes:
 		if is_instance_valid(snake):
+			print("[MEDUSA] Omor serpe: ", snake)
 			snake.is_dead = true
 			snake._die()
 	active_snakes.clear()
 	anim.play("death")
-	var timeout = get_tree().create_timer(3.0)
+	print("[MEDUSA] Animatie death pornita")
 	await anim.animation_finished
+	print("[MEDUSA] Animatie death terminata, queue_free")
 	queue_free()
-
-func _do_damage():
-	if player_hurtbox == null:
-		return
-	if !is_instance_valid(player_hurtbox):
-		return
-	var overlapping = $AttackHitbox.get_overlapping_areas()
-	if overlapping.has(player_hurtbox):
-		player_hurtbox.get_parent().take_damage(damage)
 
 func update_health():
 	if !has_node("medusa_healthbar"):
@@ -196,12 +258,16 @@ func update_health():
 		healthbar.visible = true
 
 func _on_attack_hitbox_area_entered(area):
-	if is_attacking or attack_cooldown_timer:
+	print("[MEDUSA] AttackHitbox area_entered: ", area.name, " is_attacking=", is_attacking, " attack_cooldown_timer=", attack_cooldown_timer)
+	if is_attacking or attack_cooldown_timer or is_spawning or is_hurt or is_dead:
+		print("[MEDUSA] Atac ignorat: is_attacking=", is_attacking, " cooldown=", attack_cooldown_timer, " is_spawning=", is_spawning)
 		return
 	if player == null:
+		print("[MEDUSA] Atac ignorat: player null")
 		return
-	var direction = (player.global_position - global_position).normalized()
 	if area.name == "Hurtbox":
+		var direction = (player.global_position - global_position).normalized()
+		print("[MEDUSA] Incepe atac, directie=", direction)
 		player_in_hitbox = true
 		player_hurtbox = area
 		if direction.x > 0:
@@ -210,9 +276,11 @@ func _on_attack_hitbox_area_entered(area):
 			sprite_node.scale.x = 1
 		is_attacking = true
 		anim.play("attack")
+		print("[MEDUSA] Animatie attack pornita")
 
 func _on_attack_hitbox_area_exited(area):
 	if area.name == "Hurtbox":
+		print("[MEDUSA] Player a iesit din AttackHitbox")
 		player_in_hitbox = false
 		player_hurtbox = null
 
@@ -221,18 +289,30 @@ func check_phase():
 		phase = 2
 		speed = phase2_speed
 		damage = phase2_damage
-		print("Faza 2!")
+		print("[MEDUSA] Faza 2 activata! speed=", speed, " damage=", damage)
 
 func spawn_snake(count: int = 1):
 	if snake_scene == null or player == null:
+		print("[MEDUSA] spawn_snake ignorat: snake_scene=", snake_scene, " player=", player)
 		return
+
+	# Daca atacul e in curs sau in cooldown, amana spawn-ul
+	if is_attacking or attack_cooldown_timer or _attack_coroutine_active:
+		spawn_timer = 2.0
+		print("[MEDUSA] Spawn amanat, Medusa ataca, retry in 2s")
+		return
+
 	var max_snakes = phase1_max_snakes if phase == 1 else phase2_max_snakes
 	active_snakes = active_snakes.filter(func(s): return is_instance_valid(s))
+	print("[MEDUSA] spawn_snake: active=", active_snakes.size(), " max=", max_snakes)
+
 	if active_snakes.size() >= max_snakes:
 		spawn_timer = phase1_spawn_interval if phase == 1 else phase2_spawn_interval
+		print("[MEDUSA] Max serpi atins, reset timer")
 		return
 
 	spawn_timer = phase1_spawn_interval if phase == 1 else phase2_spawn_interval
 	_pending_spawn_count = min(count, max_snakes - active_snakes.size())
+	print("[MEDUSA] Pornesc animatie spawn pentru ", _pending_spawn_count, " serpi")
 	is_spawning = true
 	anim.play("spawn")

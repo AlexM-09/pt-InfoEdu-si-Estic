@@ -325,6 +325,7 @@ animations = [{
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_1fj45")
+damage = 80
 snake_scene = ExtResource("2_keo1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=44963068]
@@ -358,9 +359,7 @@ debug_color = Color(0.18003303, 0.6432267, 3.85046e-07, 0.41960785)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="animation_manager" unique_id=599297967]
 position = Vector2(6, -65)
 sprite_frames = SubResource("SpriteFrames_vgmg8")
-animation = &"spawn"
-frame = 4
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="medusa_healthbar" type="ProgressBar" parent="." unique_id=1857037252]
 unique_name_in_owner = true
