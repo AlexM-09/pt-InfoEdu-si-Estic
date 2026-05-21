@@ -1557,12 +1557,11 @@ spawn_point_name = "HubExit5"
 [node name="wave_manager" parent="." unique_id=604531861 instance=ExtResource("11_dc8rm")]
 enemy_scenes = Array[PackedScene]([ExtResource("11_3niv0"), ExtResource("12_sqpjq")])
 boss_scene = ExtResource("10_0vg6y")
-spawn_radius = 75.0
+spawn_radius = 70.0
 spawn_interval = 1.5
-wave_duration = 5.0
-break_duration = 5.0
+wave_duration = 30.0
 level_index = 1
-max_waves = 2
+max_waves = 4
 
 [node name="MusicController" type="Node" parent="." unique_id=104953840]
 process_mode = 3

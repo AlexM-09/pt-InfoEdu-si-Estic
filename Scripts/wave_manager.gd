@@ -253,7 +253,7 @@ func show_level_up_menu():
 	if is_boss_break:
 		wave_complete_label.text = "Boss-ul vine!\nAlege un upgrade:"
 	else:
-		wave_complete_label.text = "Wave %d completat!\nAlege un upgrade:" % current_wave
+		wave_complete_label.text = "Wave %d completat!\nAlege un upgrade:" % (current_wave-1)
 
 	level_up_menu.visible = true
 	level_up_pending = true
