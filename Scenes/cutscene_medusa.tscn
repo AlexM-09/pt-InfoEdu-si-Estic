@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ko515ktotu6"]
+
+[ext_resource type="Script" uid="uid://0hjvowbk0bn" path="res://cutscene_player.gd" id="1_cn5ar"]
+[ext_resource type="VideoStream" uid="uid://c8ckfeorlpk8" path="res://Assets/MEDUSA-CUTSCENE.ogv" id="2_cn5ar"]
+
+[node name="Cutscene Medusa" type="CanvasLayer" unique_id=274939425]
+script = ExtResource("1_cn5ar")
+next_scene = "res://Scenes/Maps/Arcadia Hub.tscn"
+spawn_point = "ARENA2 Entrance"
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=842774334]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_cn5ar")
+autoplay = true
+expand = true
+
+[node name="SkipButton" type="Button" parent="." unique_id=1906508386]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "SKIP"

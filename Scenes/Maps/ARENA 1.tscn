@@ -1571,7 +1571,7 @@ shape = SubResource("RectangleShape2D_6226x")
 [node name="SceneEntranceDown" parent="." unique_id=2142832296 instance=ExtResource("9_gjvn7")]
 position = Vector2(2.7105054e-20, 147.00002)
 scale = Vector2(38.68021, 1.7351284)
-target_scene = "res://Scenes/Maps/Arcadia Hub.tscn"
+target_scene = "res://Scenes/cutscene_minotaur.tscn"
 target_spawn_point = "ARENA1 Entrance"
 spawn_point_name = "HubExit4"
 
