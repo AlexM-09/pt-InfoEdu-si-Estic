@@ -9,6 +9,7 @@ var player_chase: bool = false
 @export var damage = 25
 var is_dead = false
 var is_hurt = false
+var is_attacking = false
 @onready var sprite_node = $animation_manager
 var damage_cooldown: bool = false
 
@@ -26,20 +27,20 @@ var phase1_speed = 65.0
 var phase1_damage = 25
 var phase1_dash_speed = 350.0
 var phase1_dash_distance = 300.0
-var phase1_dash_trigger = 150.0
 var phase1_dash_cooldown = 2.5
 
 var phase2_speed = 100.0
 var phase2_damage = 40
 var phase2_dash_speed = 550.0
 var phase2_dash_distance = 350.0
-var phase2_dash_trigger = 200.0
 var phase2_dash_cooldown = 1.2
 
 var current_dash_speed = 350.0
 var current_dash_distance = 300.0
-var current_dash_trigger = 150.0
 var current_dash_cooldown = 2.5
+
+var dash_timer: float = 0.0
+var next_dash_time: float = 0.0
 
 func _ready():
 	anim.play("idle")
@@ -49,8 +50,8 @@ func _ready():
 	damage = phase1_damage
 	current_dash_speed = phase1_dash_speed
 	current_dash_distance = phase1_dash_distance
-	current_dash_trigger = phase1_dash_trigger
 	current_dash_cooldown = phase1_dash_cooldown
+	next_dash_time = randf_range(2.5, 5.0)
 
 func _setup_healthbar():
 	if has_node("minotaur_healthbar"):
@@ -61,14 +62,12 @@ func _setup_healthbar():
 		print("minotaur_healthbar nu a fost gasit!")
 
 func _physics_process(delta):
-	if is_dead or is_hurt:
+	if is_dead or is_hurt or is_attacking:
 		return
-
 	if is_dash_windup:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
-
 	if is_dashing:
 		_process_dash(delta)
 		return
@@ -79,11 +78,33 @@ func _physics_process(delta):
 		var dist = global_position.distance_to(player.global_position)
 		var direction = (player.global_position - global_position).normalized()
 
-		if dist <= current_dash_trigger and not dash_cooldown:
-			_start_dash_windup(direction)
+		# Atac melee - se opreste la 35 si ataca
+		if dist < 35 and not damage_cooldown and not is_attacking:
+			is_attacking = true
+			damage_cooldown = true
+			velocity = Vector2.ZERO
+			anim.play("attack")
+			await anim.animation_finished
+			if player != null and is_instance_valid(player):
+				var dist_after = global_position.distance_to(player.global_position)
+				if dist_after < 45:
+					player.take_damage(damage)
+			await get_tree().create_timer(0.8).timeout
+			damage_cooldown = false
+			is_attacking = false
 			return
 
-		if dist > 40:
+		# timer pentru dash random
+		if not dash_cooldown:
+			dash_timer += delta
+			if dash_timer >= next_dash_time:
+				dash_timer = 0.0
+				next_dash_time = randf_range(1.5, 3.5)
+				_start_dash_windup(direction)
+				return
+
+		# Miscare
+		if dist > 30:
 			velocity = direction * speed
 		else:
 			velocity = Vector2.ZERO
@@ -96,6 +117,7 @@ func _physics_process(delta):
 		if anim.animation != "walk":
 			anim.play("walk")
 	else:
+		dash_timer = 0.0
 		velocity = Vector2.ZERO
 		if anim.animation != "idle":
 			anim.play("idle")
@@ -109,9 +131,8 @@ func check_phase():
 		damage = phase2_damage
 		current_dash_speed = phase2_dash_speed
 		current_dash_distance = phase2_dash_distance
-		current_dash_trigger = phase2_dash_trigger
 		current_dash_cooldown = phase2_dash_cooldown
-		print("Minotaur Faza 2!")
+		print("[MINO] Faza 2 activata!")
 
 func _start_dash_windup(direction: Vector2):
 	is_dash_windup = true
@@ -119,12 +140,10 @@ func _start_dash_windup(direction: Vector2):
 	dash_direction = direction
 	dash_traveled = 0.0
 	dash_cooldown = true
-
 	if direction.x > 0:
 		sprite_node.scale.x = 1
 	elif direction.x < 0:
 		sprite_node.scale.x = -1
-
 	anim.play("dash")
 
 func _start_dash_move():
@@ -135,27 +154,25 @@ func _process_dash(delta):
 	velocity = dash_direction * current_dash_speed
 	move_and_slide()
 	dash_traveled += current_dash_speed * delta
-
 	if player != null and not dash_hit_player:
 		var dist = global_position.distance_to(player.global_position)
 		if dist < 40:
 			dash_hit_player = true
 			if player.has_method("take_damage"):
 				player.take_damage(damage)
-
 	if dash_traveled >= current_dash_distance:
 		_end_dash()
 
 func _end_dash():
 	is_dashing = false
+	is_attacking = false
+	damage_cooldown = false
 	velocity = Vector2.ZERO
 	dash_traveled = 0.0
-
 	if player_chase:
 		anim.play("walk")
 	else:
 		anim.play("idle")
-
 	_start_dash_cooldown()
 
 func _start_dash_cooldown():
@@ -168,6 +185,11 @@ func _on_animation_finished():
 	if anim.animation == "dash":
 		_start_dash_move()
 		return
+	if anim.animation == "attack":
+		if player_chase:
+			anim.play("walk")
+		else:
+			anim.play("idle")
 
 func _on_detection_area_body_entered(body):
 	if body.name == "player":
@@ -185,19 +207,20 @@ func take_damage(attackdamage):
 	health -= attackdamage
 	update_health()
 	is_hurt = true
+	is_attacking = false
 	is_dashing = false
 	is_dash_windup = false
+	damage_cooldown = false
 	velocity = Vector2.ZERO
 	anim.play("hurt")
-	await get_tree().create_timer(1.0).timeout  # timeout siguranta
+	await get_tree().create_timer(1.0).timeout
 	is_hurt = false
 	if health <= 0:
 		SaveManager.add_kill()
 		is_dead = true
 		call_deferred("_die")
 		return
-	await get_tree().create_timer(0.4).timeout
-	damage_cooldown = false
+	await get_tree().create_timer(0.3).timeout
 	if player_chase:
 		anim.play("walk")
 	else:
@@ -205,6 +228,7 @@ func take_damage(attackdamage):
 
 func _die():
 	is_dead = true
+	is_attacking = false
 	is_dashing = false
 	is_dash_windup = false
 	player_chase = false
