@@ -1891,9 +1891,6 @@ layer_3/y_sort_enabled = true
 layer_3/z_index = 1000
 layer_3/tile_data = PackedInt32Array(1179700, 1245189, 29, 1179698, 1048581, 28, 1179696, 1048581, 28, 1179694, 1245189, 29, 1179704, 1048581, 28, 1179706, 1048581, 28, 1179708, 1245189, 29, 2031662, 1048581, 26, 2031664, 1048581, 268435482, 1179702, 1245189, 29)
 
-[node name="player" parent="." unique_id=1176532510 instance=ExtResource("5_03e3c")]
-position = Vector2(1, 5)
-
 [node name="Invisible Walls" type="StaticBody2D" parent="." unique_id=1197255275]
 visible = false
 position = Vector2(-479.5, 7.5)
@@ -2565,8 +2562,10 @@ script = ExtResource("13_lp6rn")
 poi_type = "Cyclop"
 
 [node name="Minimap" parent="." unique_id=1072529477 instance=ExtResource("14_j5nwm")]
+visible = false
 
 [node name="infominotaur" type="Node2D" parent="." unique_id=14935402]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="infominotaur" unique_id=1579843914]
 position = Vector2(-521, 455)
@@ -2593,6 +2592,7 @@ text = "[E] Legenda Minotaurului"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="infominotaur" unique_id=509895166]
 process_mode = 3
+visible = false
 script = ExtResource("17_3y422")
 
 [node name="Panel" type="Panel" parent="infominotaur/CanvasLayer" unique_id=368828734]
@@ -2661,6 +2661,7 @@ scale = Vector2(-1, 1)
 theme_override_styles/panel = SubResource("StyleBoxTexture_pj1v6")
 
 [node name="infomedusa" type="Node2D" parent="." unique_id=684338193]
+visible = false
 position = Vector2(419, 666)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="infomedusa" unique_id=1291757908]
@@ -2687,6 +2688,7 @@ theme_override_font_sizes/font_size = 19
 text = "[E] Legenda Medusei"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="infomedusa" unique_id=112676247]
+visible = false
 script = ExtResource("21_s1mlc")
 
 [node name="Panel" type="Panel" parent="infomedusa/CanvasLayer" unique_id=260754976]
@@ -2756,6 +2758,7 @@ scale = Vector2(-1, 1)
 theme_override_styles/panel = SubResource("StyleBoxTexture_3y422")
 
 [node name="infociclops" type="Node2D" parent="." unique_id=1487776897]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="infociclops" unique_id=156798527]
 position = Vector2(727, 439)
@@ -2782,6 +2785,7 @@ text = "[E] Legenda Ciclopsului"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="infociclops" unique_id=1487998798]
 process_mode = 3
+visible = false
 script = ExtResource("23_1rs88")
 
 [node name="Panel" type="Panel" parent="infociclops/CanvasLayer" unique_id=1271466359]
@@ -2852,6 +2856,8 @@ offset_right = 1475.9999
 offset_bottom = 571.7682
 scale = Vector2(-1, 1)
 theme_override_styles/panel = SubResource("StyleBoxTexture_44wlt")
+
+[node name="player" parent="." unique_id=1176532510 instance=ExtResource("5_03e3c")]
 
 [connection signal="pressed" from="infominotaur/CanvasLayer/Panel/BtnBackm" to="infominotaur/CanvasLayer" method="_on_btn_backm_pressed"]
 [connection signal="pressed" from="infomedusa/CanvasLayer/Panel/BtnBack" to="infomedusa/CanvasLayer" method="_on_btn_back_pressed"]

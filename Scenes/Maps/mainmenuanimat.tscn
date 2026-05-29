@@ -180,7 +180,6 @@ script = ExtResource("12_k787g")
 music = ExtResource("13_skbqr")
 
 [node name="Options" type="Panel" parent="." unique_id=1859902014]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.23434344

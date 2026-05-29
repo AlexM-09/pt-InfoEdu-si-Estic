@@ -2,6 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dt6rqjd2mobg" path="res://Characters/Player/player.gd" id="1_uie8r"]
 [ext_resource type="Texture2D" uid="uid://cj5i2ec61mhxt" path="res://Art/Gladiators/Gladiator-Sprite Sheet.png" id="2_qqi7k"]
+[ext_resource type="Script" uid="uid://f7vls6d0va00" path="res://Scenes/Maps/options_menu.gd" id="3_u2wkb"]
+[ext_resource type="Texture2D" uid="uid://busfo5l8wt3gl" path="res://Art/Humble Gift - v1.3/PNG/SpriteSheet.png" id="4_b71o8"]
+[ext_resource type="FontFile" uid="uid://sw05w6je7nyj" path="res://Art/Others/DIOGENES.ttf" id="5_x58m1"]
+[ext_resource type="Script" uid="uid://cqchn0tvwctmd" path="res://Scripts/h_slider.gd" id="6_b6jp0"]
+[ext_resource type="Texture2D" uid="uid://dpfbm8atyjopw" path="res://Art/SimpleKeys/Classic/Dark/Single PNGs/W.png" id="7_8k5s7"]
+[ext_resource type="Texture2D" uid="uid://bwjco38fp8a08" path="res://Art/SimpleKeys/Classic/Dark/Single PNGs/SHIFT.png" id="8_5elsd"]
+[ext_resource type="Texture2D" uid="uid://l3xypo4m4kj0" path="res://Art/SimpleKeys/cyJnjc.png" id="9_blwrb"]
+[ext_resource type="Texture2D" uid="uid://b808veh3xbu30" path="res://Art/SimpleKeys/Classic/Dark/Single PNGs/A.png" id="10_hvtal"]
+[ext_resource type="Texture2D" uid="uid://dh6d3t2apbus2" path="res://Art/SimpleKeys/Classic/Dark/Single PNGs/S.png" id="11_8fwmd"]
+[ext_resource type="Texture2D" uid="uid://fw5t1nrlsdmk" path="res://Art/SimpleKeys/Classic/Dark/Single PNGs/D.png" id="12_jec2i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uie8r"]
 atlas = ExtResource("2_qqi7k")
@@ -280,6 +290,47 @@ radius = 13.85
 radius = 8.85
 height = 24.15
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kpgn3"]
+texture = ExtResource("4_b71o8")
+region_rect = Rect2(36, 1663, 251, 287)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ip0i"]
+texture = ExtResource("4_b71o8")
+region_rect = Rect2(36, 1666, 250, 284)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5jopl"]
+texture = ExtResource("4_b71o8")
+region_rect = Rect2(48, 1459, 97, 9)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yee8r"]
+texture = ExtResource("4_b71o8")
+region_rect = Rect2(208, 2004, 69, 18)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v0k0y"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s0xdn"]
+texture = ExtResource("4_b71o8")
+region_rect = Rect2(398, 2005, 104, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_atvgk"]
+texture = ExtResource("7_8k5s7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bkulq"]
+texture = ExtResource("8_5elsd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3hdo"]
+texture = ExtResource("9_blwrb")
+region_rect = Rect2(112, 211, 63, 82)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8hpgr"]
+texture = ExtResource("10_hvtal")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8kxwp"]
+texture = ExtResource("11_8fwmd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_12h2v"]
+texture = ExtResource("12_jec2i")
+
 [node name="player" type="CharacterBody2D" unique_id=1176532510]
 z_index = 1
 collision_mask = 3
@@ -331,5 +382,253 @@ offset_bottom = -4.999998
 scale = Vector2(0.2, 0.2)
 show_percentage = false
 
+[node name="options menu" type="Node2D" parent="." unique_id=756954321]
+process_mode = 3
+z_index = 174
+position = Vector2(-54, -15)
+script = ExtResource("3_u2wkb")
+
+[node name="Panel" type="Panel" parent="options menu" unique_id=651009342]
+z_index = 1031
+offset_left = 407.0
+offset_top = 180.0
+offset_right = 1453.0
+offset_bottom = 790.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_kpgn3")
+metadata/_edit_use_anchors_ = true
+
+[node name="Options" type="Panel" parent="options menu/Panel" unique_id=599854817]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.5458891
+anchor_top = -0.5
+anchor_right = -0.13957936
+anchor_bottom = -0.08852459
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6ip0i")
+metadata/_edit_use_anchors_ = true
+
+[node name="titlu" type="Label" parent="options menu/Panel/Options" unique_id=1738544999]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.030405406
+anchor_right = 0.9763514
+anchor_bottom = 0.14864865
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_5jopl")
+metadata/_edit_use_anchors_ = true
+
+[node name="audio" type="Label" parent="options menu/Panel/Options" unique_id=746157705]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.045045044
+anchor_top = 0.29729733
+anchor_right = 0.34234235
+anchor_bottom = 0.40540534
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_yee8r")
+metadata/_edit_use_anchors_ = true
+
+[node name="back" type="Button" parent="options menu/Panel/Options" unique_id=550812008]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.71294117
+anchor_top = 0.749004
+anchor_right = 0.95320636
+anchor_bottom = 0.96015936
+offset_right = 132.62912
+offset_bottom = 68.83908
+scale = Vector2(0.435, 0.435)
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_x58m1")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v0k0y")
+text = "BACK"
+metadata/_edit_use_anchors_ = true
+
+[node name="mainmenu" type="Button" parent="options menu/Panel/Options" unique_id=1575921403]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3035294
+anchor_top = 0.76494026
+anchor_right = 0.56408995
+anchor_bottom = 0.8791236
+offset_right = 254.77899
+offset_bottom = 72.339966
+scale = Vector2(0.435, 0.435)
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_x58m1")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v0k0y")
+text = "MAIN MENU"
+metadata/_edit_use_anchors_ = true
+
+[node name="quit" type="Button" parent="options menu/Panel/Options" unique_id=222898861]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06134482
+anchor_top = 0.75238097
+anchor_right = 0.25706398
+anchor_bottom = 0.96159524
+offset_right = 87.022964
+offset_bottom = 57.065002
+scale = Vector2(0.435, 0.435)
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_x58m1")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxEmpty_v0k0y")
+text = "QUIT"
+metadata/_edit_use_anchors_ = true
+
+[node name="HSlider" type="HSlider" parent="options menu/Panel/Options" unique_id=2097256079]
+layout_mode = 0
+offset_left = 154.00002
+offset_top = 77.0
+offset_right = 398.77612
+offset_bottom = 93.0
+scale = Vector2(1.005, 1.005)
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("6_b6jp0")
+audio_bus_name = "Master"
+
+[node name="Controls" type="Label" parent="options menu/Panel/Options" unique_id=2049185919]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0472973
+anchor_top = 0.4662162
+anchor_right = 0.3457207
+anchor_bottom = 0.55067575
+theme_override_styles/normal = SubResource("StyleBoxTexture_s0xdn")
+metadata/_edit_use_anchors_ = true
+
+[node name="w" type="Label" parent="options menu/Panel/Options/Controls" unique_id=88647979]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.3098164
+anchor_top = -0.7091655
+anchor_right = 1.5251681
+anchor_bottom = 0.29083452
+theme_override_styles/normal = SubResource("StyleBoxTexture_atvgk")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="shift" type="Label" parent="options menu/Panel/Options/Controls" unique_id=68545919]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.8286182
+anchor_top = -0.013513316
+anchor_right = 2.3376312
+anchor_bottom = 0.9864867
+theme_override_styles/normal = SubResource("StyleBoxTexture_bkulq")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="clickstanga" type="Label" parent="options menu/Panel/Options/Controls" unique_id=672526702]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.6019266
+anchor_top = -0.3613394
+anchor_right = 2.934002
+anchor_bottom = 1.5586594
+theme_override_styles/normal = SubResource("StyleBoxTexture_e3hdo")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="a" type="Label" parent="options menu/Panel/Options/Controls" unique_id=1403175300]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0748873
+anchor_top = 0.33431277
+anchor_right = 1.2730197
+anchor_bottom = 1.3343128
+offset_right = 1.7590942
+theme_override_styles/normal = SubResource("StyleBoxTexture_8hpgr")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="s" type="Label" parent="options menu/Panel/Options/Controls" unique_id=156149150]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.3098164
+anchor_top = 0.33431277
+anchor_right = 1.4807234
+anchor_bottom = 1.0543123
+offset_right = 4.5404053
+offset_bottom = 6.44001
+theme_override_styles/normal = SubResource("StyleBoxTexture_8kxwp")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="d" type="Label" parent="options menu/Panel/Options/Controls" unique_id=1363433178]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.5545342
+anchor_top = 0.33431277
+anchor_right = 1.7254411
+anchor_bottom = 1.3343128
+offset_right = 4.5404205
+theme_override_styles/normal = SubResource("StyleBoxTexture_12h2v")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="move" type="Label" parent="options menu/Panel/Options/Controls" unique_id=498186143]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.1661177
+anchor_top = 1.4339012
+anchor_right = 1.6490477
+anchor_bottom = 2.9708583
+offset_right = 113.75
+offset_bottom = 65.649994
+scale = Vector2(0.35, 0.35)
+mouse_filter = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_x58m1")
+theme_override_font_sizes/font_size = 64
+text = "MOVE"
+metadata/_edit_use_anchors_ = true
+
+[node name="dash" type="Label" parent="options menu/Panel/Options/Controls" unique_id=1725639847]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.8914986
+anchor_top = 1.6078143
+anchor_right = 2.2861214
+anchor_bottom = 3.1447709
+offset_right = 92.95001
+offset_bottom = 65.65001
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_x58m1")
+theme_override_font_sizes/font_size = 64
+text = "DASH"
+metadata/_edit_use_anchors_ = true
+
+[node name="attack" type="Label" parent="options menu/Panel/Options/Controls" unique_id=1971071715]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.474957
+anchor_top = 1.6512929
+anchor_right = 3.0627518
+anchor_bottom = 3.188249
+offset_right = 138.45001
+offset_bottom = 65.65001
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_x58m1")
+theme_override_font_sizes/font_size = 64
+text = "ATTACK"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="timeout" from="regen_timer" to="." method="_on_regen_timer_timeout"]
+[connection signal="pressed" from="options menu/Panel/Options/back" to="options menu" method="_on_back_pressed"]
+[connection signal="pressed" from="options menu/Panel/Options/mainmenu" to="options menu" method="_on_mainmenu_pressed"]
+[connection signal="pressed" from="options menu/Panel/Options/quit" to="options menu" method="_on_quit_pressed"]
+[connection signal="value_changed" from="options menu/Panel/Options/HSlider" to="options menu/Panel/Options/HSlider" method="_on_value_changed"]
