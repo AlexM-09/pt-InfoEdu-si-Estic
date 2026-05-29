@@ -10,7 +10,13 @@
 [ext_resource type="Script" uid="uid://cqchn0tvwctmd" path="res://Scripts/h_slider.gd" id="11_5i37o"]
 [ext_resource type="Script" uid="uid://boyeycsn5xysq" path="res://Scenes/Maps/canvas_layer_menu.gd" id="11_iiryw"]
 [ext_resource type="Script" uid="uid://gxidn75u3fot" path="res://Scenes/Maps/music_controller.gd" id="12_k787g"]
+[ext_resource type="Texture2D" uid="uid://dpfbm8atyjopw" path="res://Art/SimpleKeys/Classic/Dark/Single PNGs/W.png" id="12_skbqr"]
+[ext_resource type="Texture2D" uid="uid://bwjco38fp8a08" path="res://Art/SimpleKeys/Classic/Dark/Single PNGs/SHIFT.png" id="13_m4lbh"]
 [ext_resource type="AudioStream" uid="uid://gs7xuwt0tucu" path="res://Art/Others/PRIMUL PROIECT MUZICANT pt joc.mp3" id="13_skbqr"]
+[ext_resource type="Texture2D" uid="uid://b808veh3xbu30" path="res://Art/SimpleKeys/Classic/Dark/Single PNGs/A.png" id="13_tkl1c"]
+[ext_resource type="Texture2D" uid="uid://l3xypo4m4kj0" path="res://Art/SimpleKeys/cyJnjc.png" id="14_uqpww"]
+[ext_resource type="Texture2D" uid="uid://dh6d3t2apbus2" path="res://Art/SimpleKeys/Classic/Dark/Single PNGs/S.png" id="15_uqpww"]
+[ext_resource type="Texture2D" uid="uid://fw5t1nrlsdmk" path="res://Art/SimpleKeys/Classic/Dark/Single PNGs/D.png" id="16_oc3fx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4onrk"]
 
@@ -27,6 +33,29 @@ region_rect = Rect2(48, 1459, 97, 9)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k787g"]
 texture = ExtResource("10_chors")
 region_rect = Rect2(208, 2004, 69, 18)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_skbqr"]
+texture = ExtResource("10_chors")
+region_rect = Rect2(398, 2005, 104, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m4lbh"]
+texture = ExtResource("12_skbqr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rou8u"]
+texture = ExtResource("13_m4lbh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oc3fx"]
+texture = ExtResource("14_uqpww")
+region_rect = Rect2(112, 211, 63, 82)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uqpww"]
+texture = ExtResource("13_tkl1c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lsd6f"]
+texture = ExtResource("15_uqpww")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a7eme"]
+texture = ExtResource("16_oc3fx")
 
 [node name="Control" type="Control" unique_id=213135547]
 layout_mode = 3
@@ -108,6 +137,7 @@ text = "QUIT"
 script = ExtResource("11_iiryw")
 
 [node name="NamePopup" type="Panel" parent="CanvasLayerMenu" unique_id=1324737191]
+visible = false
 anchors_preset = -1
 anchor_bottom = 0.031000001
 offset_right = 40.0
@@ -165,8 +195,8 @@ metadata/_edit_use_anchors_ = true
 [node name="titlu" type="Label" parent="Options" unique_id=1905444588]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.036036037
-anchor_right = 0.981982
+anchor_left = 0.030405406
+anchor_right = 0.9763514
 anchor_bottom = 0.14864865
 grow_horizontal = 2
 theme_override_styles/normal = SubResource("StyleBoxTexture_5i37o")
@@ -210,6 +240,130 @@ step = 0.05
 value = 1.0
 script = ExtResource("11_5i37o")
 audio_bus_name = "Master"
+
+[node name="Controls" type="Label" parent="Options" unique_id=993260663]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0472973
+anchor_top = 0.4662162
+anchor_right = 0.3457207
+anchor_bottom = 0.55067575
+theme_override_styles/normal = SubResource("StyleBoxTexture_skbqr")
+metadata/_edit_use_anchors_ = true
+
+[node name="w" type="Label" parent="Options/Controls" unique_id=1926873744]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.4
+anchor_top = -0.39999977
+anchor_right = 1.5709069
+anchor_bottom = 0.3199998
+theme_override_styles/normal = SubResource("StyleBoxTexture_m4lbh")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="shift" type="Label" parent="Options/Controls" unique_id=1457924589]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.045283
+anchor_top = 0.07999995
+anchor_right = 2.3773584
+anchor_bottom = 0.79999954
+offset_left = -24.0
+offset_right = -24.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_rou8u")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="clickstanga" type="Label" parent="Options/Controls" unique_id=907935486]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.535849
+anchor_top = -0.71999955
+anchor_right = 2.8679245
+anchor_bottom = 1.1999992
+theme_override_styles/normal = SubResource("StyleBoxTexture_oc3fx")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="a" type="Label" parent="Options/Controls" unique_id=1182732085]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.2
+anchor_top = 0.37999976
+anchor_right = 1.3709068
+anchor_bottom = 1.0999993
+theme_override_styles/normal = SubResource("StyleBoxTexture_uqpww")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="s" type="Label" parent="Options/Controls" unique_id=1392731458]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.4
+anchor_top = 0.37999976
+anchor_right = 1.5709069
+anchor_bottom = 1.0999993
+theme_override_styles/normal = SubResource("StyleBoxTexture_lsd6f")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="d" type="Label" parent="Options/Controls" unique_id=1003364443]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.6037736
+anchor_top = 0.37999976
+anchor_right = 1.7746804
+anchor_bottom = 1.0999993
+theme_override_styles/normal = SubResource("StyleBoxTexture_a7eme")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
+
+[node name="move" type="Label" parent="Options/Controls" unique_id=3682868]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 60.0
+offset_right = 457.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_iov1x")
+theme_override_font_sizes/font_size = 48
+text = "MOVE"
+
+[node name="dash" type="Label" parent="Options/Controls" unique_id=1408187705]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 60.0
+offset_right = 622.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_iov1x")
+theme_override_font_sizes/font_size = 48
+text = "DASH"
+
+[node name="attack" type="Label" parent="Options/Controls" unique_id=161969193]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 60.0
+offset_right = 800.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_iov1x")
+theme_override_font_sizes/font_size = 48
+text = "ATTACK"
+
+[node name="Label" type="Label" parent="." unique_id=198895111]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03888889
+anchor_top = 0.06944445
+anchor_right = 0.50252527
+anchor_bottom = 0.2324074
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_iov1x")
+theme_override_font_sizes/font_size = 111
+text = "CURSE OF ARCADIA"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
