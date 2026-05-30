@@ -73,3 +73,18 @@ func load_game():
 			# adauga cheia daca lipseste din save-ul vechi
 			if not data.has("levels_completed"):
 				data["levels_completed"] = [false, false, false]
+
+
+
+func has_save() -> bool:
+	return FileAccess.file_exists(SAVE_PATH)
+
+func new_game():
+	data["levels_completed"] = [false, false, false]
+	data["current_run"] = {
+		"enemies_killed": 0,
+		"damage_dealt": 0,
+		"damage_taken": 0,
+		"max_wave": 0,
+	}
+	save_game()
