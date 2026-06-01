@@ -22,7 +22,7 @@ var tired_duration = 4.0
 
 const ATTACK_RANGE = 25.0
 
-# Pentru debug - ca sa nu spamam print in fiecare frame
+
 var _last_dist = -1.0
 var _last_anim = ""
 var _last_state = ""
@@ -42,7 +42,6 @@ func _setup_healthbar():
 		print("[CICLOP] EROARE: ciclop_healthbar nu a fost gasit!")
 
 func _physics_process(_delta):
-	# Debug stare curenta (doar cand se schimba)
 	var current_state = "dead=%s hurt=%s tired=%s attacking=%s cooldown=%s" % [is_dead, is_hurt, is_tired, is_attacking, attack_cooldown_timer]
 	if current_state != _last_state:
 		print("[CICLOP] Stare schimbata: ", current_state)
@@ -62,8 +61,8 @@ func _physics_process(_delta):
 		var dist = global_position.distance_to(player.global_position)
 		var direction = (player.global_position - global_position).normalized()
 
-		# Debug distanta (doar cand se schimba cu mai mult de 5px)
-		if abs(dist - _last_dist) > 5.0:
+		
+		if abs(dist - _last_dist) > 2.0:
 			print("[CICLOP] Distanta fata de player: ", snappedf(dist, 0.1), " | ATTACK_RANGE=", ATTACK_RANGE, " | cooldown=", attack_cooldown_timer)
 			_last_dist = dist
 

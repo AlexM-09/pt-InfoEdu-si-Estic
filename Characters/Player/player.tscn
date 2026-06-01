@@ -290,9 +290,12 @@ radius = 13.85
 radius = 8.85
 height = 24.15
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u2wkb"]
+load_path = "res://.godot/imported/SpriteSheet.png-667f0d323508201984910932d7cbbea9.ctex"
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kpgn3"]
-texture = ExtResource("4_b71o8")
-region_rect = Rect2(36, 1663, 251, 287)
+texture = SubResource("CompressedTexture2D_u2wkb")
+region_rect = Rect2(357, 1002, 25, 30)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ip0i"]
 texture = ExtResource("4_b71o8")

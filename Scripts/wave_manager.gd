@@ -149,12 +149,10 @@ func spawn_enemy():
 	if enemy_scenes.is_empty() or player == null:
 		return
 	var spawn_pos = _get_valid_spawn_pos()
-	# ← FIX: era "enemy_scene" (fara 's'), acum e corect
 	var scene = enemy_scenes[randi() % enemy_scenes.size()]
 	var enemy = scene.instantiate()
 	get_parent().add_child(enemy)
 	enemy.global_position = spawn_pos
-	# Adauga la grup ca wave_manager sa il poata gestiona
 	enemy.add_to_group("enemy")
 	if "max_health" in enemy:
 		enemy.max_health = int(enemy.max_health * enemy_health_multiplier)
@@ -174,7 +172,6 @@ func spawn_boss():
 	var boss = boss_scene.instantiate()
 	get_parent().add_child(boss)
 	boss.global_position = spawn_pos
-	# Adauga la grup ca wave_manager sa detecteze cand moare
 	boss.add_to_group("boss")
 	boss_spawned = true
 	print("[SPAWN_BOSS] Boss spawnat!")

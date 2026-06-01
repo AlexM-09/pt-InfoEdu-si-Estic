@@ -102,7 +102,6 @@ func _do_damage():
 		return
 	if !is_instance_valid(player_hurtbox):
 		return
-	# verifica daca hurtbox e inca in attack hitbox
 	var overlapping = $AttackHitbox.get_overlapping_areas()
 	if not overlapping.has(player_hurtbox):
 		player_in_hitbox = false

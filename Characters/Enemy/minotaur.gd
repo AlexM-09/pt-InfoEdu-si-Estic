@@ -78,7 +78,6 @@ func _physics_process(delta):
 		var dist = global_position.distance_to(player.global_position)
 		var direction = (player.global_position - global_position).normalized()
 
-		# Atac melee - se opreste la 35 si ataca
 		if dist < 35 and not damage_cooldown and not is_attacking:
 			is_attacking = true
 			damage_cooldown = true
@@ -103,7 +102,6 @@ func _physics_process(delta):
 				_start_dash_windup(direction)
 				return
 
-		# Miscare
 		if dist > 30:
 			velocity = direction * speed
 		else:

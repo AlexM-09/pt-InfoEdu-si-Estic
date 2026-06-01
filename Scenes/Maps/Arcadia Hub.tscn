@@ -24,6 +24,8 @@
 [ext_resource type="Script" uid="uid://cy6mskk2rgfab" path="res://Scenes/Maps/info_ciclops.gd" id="22_44wlt"]
 [ext_resource type="Texture2D" uid="uid://dd05tsfdim6k6" path="res://Assets/MinimapIcons/cyclop.png" id="22_s1mlc"]
 [ext_resource type="Script" uid="uid://b2jrtmolugxyc" path="res://Scenes/Maps/info_ciclops_panel.gd" id="23_1rs88"]
+[ext_resource type="Script" uid="uid://duocbqjgjrnm1" path="res://Scenes/Maps/medusa_locked.gd" id="25_4ja3h"]
+[ext_resource type="Script" uid="uid://bmdghskg8vqec" path="res://Scenes/Maps/ciclops_locked.gd" id="26_5ppv6"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_8pvot"]
 tile_data = PackedInt32Array(0, 1, 805306389, 65536, 1, 1342177301, 1, 1, 1610612757, 65537, 1, 21)
@@ -1871,6 +1873,15 @@ region_rect = Rect2(36, 42, 59, 86)
 texture = ExtResource("22_s1mlc")
 region_rect = Rect2(32, 51, 31, 45)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_as07b"]
+size = Vector2(246.5, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ykm7w"]
+size = Vector2(248, 74)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rs88"]
+bg_color = Color(1, 1, 1, 0.57254905)
+
 [node name="Arcadia Hub" type="Node2D" unique_id=1054264875]
 y_sort_enabled = true
 
@@ -2532,40 +2543,44 @@ script = ExtResource("12_ibmu0")
 music = ExtResource("11_lmkp3")
 
 [node name="TemplePOI" type="Node2D" parent="." unique_id=78588902]
+visible = false
 position = Vector2(-7, -137)
 script = ExtResource("13_lp6rn")
 poi_type = "Temple"
 
 [node name="HousePOI" type="Node2D" parent="." unique_id=1283845929]
+visible = false
 position = Vector2(326, -69)
 script = ExtResource("13_lp6rn")
 poi_type = "House"
 
 [node name="TrainingPOI" type="Node2D" parent="." unique_id=1203797045]
+visible = false
 position = Vector2(-393, -48)
 script = ExtResource("13_lp6rn")
 poi_type = "Training Area"
 
 [node name="MinotaurPOI" type="Node2D" parent="." unique_id=693880024]
+visible = false
 position = Vector2(-642, 424)
 script = ExtResource("13_lp6rn")
 poi_type = "Minotaur"
 
 [node name="MedusaPOI" type="Node2D" parent="." unique_id=247493983]
+visible = false
 position = Vector2(854, 321)
 script = ExtResource("13_lp6rn")
 poi_type = "Medusa"
 
 [node name="CyclopPOI" type="Node2D" parent="." unique_id=1283954638]
+visible = false
 position = Vector2(-120, 1170)
 script = ExtResource("13_lp6rn")
 poi_type = "Cyclop"
 
 [node name="Minimap" parent="." unique_id=1072529477 instance=ExtResource("14_j5nwm")]
-visible = false
 
 [node name="infominotaur" type="Node2D" parent="." unique_id=14935402]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="infominotaur" unique_id=1579843914]
 position = Vector2(-521, 455)
@@ -2585,14 +2600,16 @@ offset_left = -97.0
 offset_top = 11.0
 offset_right = 93.0
 offset_bottom = 42.0
+scale = Vector2(0.305, 0.305)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("15_0jgyi")
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 64
 text = "[E] Legenda Minotaurului"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="infominotaur" unique_id=509895166]
 process_mode = 3
-visible = false
 script = ExtResource("17_3y422")
 
 [node name="Panel" type="Panel" parent="infominotaur/CanvasLayer" unique_id=368828734]
@@ -2661,7 +2678,6 @@ scale = Vector2(-1, 1)
 theme_override_styles/panel = SubResource("StyleBoxTexture_pj1v6")
 
 [node name="infomedusa" type="Node2D" parent="." unique_id=684338193]
-visible = false
 position = Vector2(419, 666)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="infomedusa" unique_id=1291757908]
@@ -2678,13 +2694,16 @@ shape = SubResource("CircleShape2D_0jgyi")
 
 [node name="InteractLabel" type="Label" parent="infomedusa/Area2D" unique_id=1919242619]
 z_index = 3
-offset_left = -97.0
-offset_top = 11.0
-offset_right = 93.0
-offset_bottom = 42.0
+offset_left = -98.0
+offset_top = -44.0
+offset_right = 428.0
+offset_bottom = 57.0
+scale = Vector2(0.345, 0.345)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("15_0jgyi")
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 64
 text = "[E] Legenda Medusei"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="infomedusa" unique_id=112676247]
@@ -2758,7 +2777,6 @@ scale = Vector2(-1, 1)
 theme_override_styles/panel = SubResource("StyleBoxTexture_3y422")
 
 [node name="infociclops" type="Node2D" parent="." unique_id=1487776897]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="infociclops" unique_id=156798527]
 position = Vector2(727, 439)
@@ -2774,18 +2792,20 @@ shape = SubResource("CircleShape2D_0jgyi")
 
 [node name="InteractLabel" type="Label" parent="infociclops/Area2D" unique_id=761595523]
 z_index = 3
-offset_left = 1165.0
-offset_top = -53.0
-offset_right = 1355.0
-offset_bottom = -22.0
+offset_left = 1167.0
+offset_top = -9.0
+offset_right = 1357.0
+offset_bottom = 22.0
+scale = Vector2(0.29, 0.29)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
 theme_override_fonts/font = ExtResource("15_0jgyi")
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 64
 text = "[E] Legenda Ciclopsului"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="infociclops" unique_id=1487998798]
 process_mode = 3
-visible = false
 script = ExtResource("23_1rs88")
 
 [node name="Panel" type="Panel" parent="infociclops/CanvasLayer" unique_id=1271466359]
@@ -2858,6 +2878,86 @@ scale = Vector2(-1, 1)
 theme_override_styles/panel = SubResource("StyleBoxTexture_44wlt")
 
 [node name="player" parent="." unique_id=1176532510 instance=ExtResource("5_03e3c")]
+position = Vector2(0, 69)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2025164741]
+position = Vector2(-55, 768)
+
+[node name="Medusa Locked" type="CollisionShape2D" parent="StaticBody2D" unique_id=15902337]
+shape = SubResource("RectangleShape2D_as07b")
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D/Medusa Locked" unique_id=253282727]
+script = ExtResource("25_4ja3h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Medusa Locked/Area2D" unique_id=847793385]
+position = Vector2(1, -42)
+shape = SubResource("RectangleShape2D_ykm7w")
+debug_color = Color(0.71815693, 0.3126944, 0.9123063, 0.41960785)
+
+[node name="Panel" type="Panel" parent="StaticBody2D/Medusa Locked" unique_id=526818550]
+offset_left = -170.0
+offset_top = -11.0
+offset_right = 180.0
+offset_bottom = 23.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1rs88")
+
+[node name="Label" type="Label" parent="StaticBody2D/Medusa Locked" unique_id=1565605272]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.00003
+offset_top = -11.000004
+offset_right = 730.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.385, 0.385)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.9955804, 0.99558026, 0.99558026, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("15_0jgyi")
+theme_override_font_sizes/font_size = 64
+text = "ÎNVINGE MINOTAURUL MAI ÎNTÂI!"
+
+[node name="Ciclops Locked" type="CollisionShape2D" parent="." unique_id=1443146243]
+z_index = 626
+position = Vector2(859.25, 372)
+shape = SubResource("RectangleShape2D_as07b")
+
+[node name="Area2D" type="Area2D" parent="Ciclops Locked" unique_id=535850103]
+script = ExtResource("26_5ppv6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ciclops Locked/Area2D" unique_id=859781044]
+position = Vector2(0.75, 7)
+shape = SubResource("RectangleShape2D_ykm7w")
+debug_color = Color(0.71815693, 0.3126944, 0.9123063, 0.41960785)
+
+[node name="Panel" type="Panel" parent="Ciclops Locked" unique_id=1654402792]
+z_index = 592
+offset_left = -188.24998
+offset_top = 12.0
+offset_right = 181.75002
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1rs88")
+
+[node name="Label" type="Label" parent="Ciclops Locked" unique_id=1642728020]
+z_index = 824
+offset_left = -178.75002
+offset_top = 11.999996
+offset_right = 744.25
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.385, 0.385)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.9955804, 0.99558026, 0.99558026, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("15_0jgyi")
+theme_override_font_sizes/font_size = 64
+text = "ÎNVINGE-O PE MEDUSA MAI ÎNTÂI!"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="infominotaur/CanvasLayer/Panel/BtnBackm" to="infominotaur/CanvasLayer" method="_on_btn_backm_pressed"]
 [connection signal="pressed" from="infomedusa/CanvasLayer/Panel/BtnBack" to="infomedusa/CanvasLayer" method="_on_btn_back_pressed"]

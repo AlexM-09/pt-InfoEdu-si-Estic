@@ -16,7 +16,7 @@ var is_hurt = false
 var attack_cooldown_timer = false
 var is_spawning = false
 var _pending_spawn_count = 0
-var _attack_coroutine_active = false  # previne overlap de coroutine attack
+var _attack_coroutine_active = false  
 
 var phase = 1
 var phase1_speed = 40.0
@@ -120,9 +120,7 @@ func take_damage(attackdamage):
 	anim.play("hurt")
 	print("[MEDUSA] Animatie hurt pornita")
 	await anim.animation_finished
-	# Verifica ca semnalul e chiar pentru "hurt" si nu altceva
 	if anim.animation != "hurt" and anim.animation != "idle" and anim.animation != "walk":
-		# animatia a fost schimbata intre timp, nu continua
 		return
 	print("[MEDUSA] Animatie hurt terminata")
 	is_hurt = false
@@ -131,7 +129,6 @@ func take_damage(attackdamage):
 		is_dead = true
 		call_deferred("_die")
 	else:
-		# Reseteaza spawn timer ca sa nu spawnam imediat dupa hurt
 		spawn_timer = phase1_spawn_interval if phase == 1 else phase2_spawn_interval
 		if player_chase:
 			anim.play("walk")
@@ -173,7 +170,6 @@ func _on_animation_finished():
 		_finish_attack()
 
 func _finish_attack():
-	# Daca o coroutine de attack mai ruleaza, nu porni alta
 	if _attack_coroutine_active:
 		print("[MEDUSA] _finish_attack: coroutine deja activa, ignorat")
 		return
@@ -182,7 +178,7 @@ func _finish_attack():
 	var saved_hurtbox = player_hurtbox
 	is_attacking = false
 
-	# Verifica daca player e inca in hitbox la finalul animatiei
+	
 	if saved_hurtbox != null and is_instance_valid(saved_hurtbox):
 		var overlapping = $AttackHitbox.get_overlapping_areas()
 		if overlapping.has(saved_hurtbox):
@@ -198,19 +194,19 @@ func _finish_attack():
 
 	_attack_coroutine_active = false
 
-	# Dupa await, verifica daca starea s-a schimbat
+	
 	if is_dead or is_hurt:
 		attack_cooldown_timer = false
 		return
 
 	attack_cooldown_timer = false
 
-	# Daca spawn-ul e in curs sau tocmai a inceput, nu interveni
+	
 	if is_spawning:
 		print("[MEDUSA] Post-attack: spawn in curs, las animatia de spawn sa ruleze")
 		return
 
-	# Incearca sa reatace daca player e inca in hitbox
+	
 	if not is_spawning:
 		var overlapping = $AttackHitbox.get_overlapping_areas()
 		for area in overlapping:
@@ -221,7 +217,6 @@ func _finish_attack():
 				print("[MEDUSA] Reatac dupa cooldown")
 				return
 
-	# Altfel, revine la walk/idle
 	if player_chase:
 		anim.play("walk")
 	else:
@@ -296,7 +291,6 @@ func spawn_snake(count: int = 1):
 		print("[MEDUSA] spawn_snake ignorat: snake_scene=", snake_scene, " player=", player)
 		return
 
-	# Daca atacul e in curs sau in cooldown, amana spawn-ul
 	if is_attacking or attack_cooldown_timer or _attack_coroutine_active:
 		spawn_timer = 2.0
 		print("[MEDUSA] Spawn amanat, Medusa ataca, retry in 2s")
