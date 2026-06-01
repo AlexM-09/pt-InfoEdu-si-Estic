@@ -16,7 +16,7 @@ func _ready():
 	continue_btn.pressed.connect(_on_continue_pressed)
 	new_game_btn.pressed.connect(_on_new_game_pressed)
 	
-	# gri daca nu are save
+	
 	if not SaveManager.has_save():
 		continue_btn.modulate = Color(0.5, 0.5, 0.5, 1)
 		continue_btn.disabled = true

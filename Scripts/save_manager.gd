@@ -70,7 +70,6 @@ func load_game():
 		file.close()
 		if result == OK:
 			data = json.get_data()
-			# adauga cheia daca lipseste din save-ul vechi
 			if not data.has("levels_completed"):
 				data["levels_completed"] = [false, false, false]
 
