@@ -327,7 +327,9 @@ collision_layer = 2
 script = ExtResource("1_1fj45")
 max_health = 300
 health = 300
-damage = 80
+phase1_damage = 75
+phase1_spawn_interval = 3.0
+phase2_damage = 120
 snake_scene = ExtResource("2_keo1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=44963068]
@@ -365,11 +367,11 @@ animation = &"idle"
 
 [node name="medusa_healthbar" type="ProgressBar" parent="." unique_id=1857037252]
 unique_name_in_owner = true
-modulate = Color(0, 0.8862745, 0.58431375, 1)
-offset_left = -31.0
-offset_top = 11.0
-offset_right = 33.0
-offset_bottom = 22.0
+modulate = Color(0, 16.849718, 11.426685, 1)
+offset_left = -33.0
+offset_top = 7.0
+offset_right = 31.0
+offset_bottom = 18.0
 show_percentage = false
 
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]

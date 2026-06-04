@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
-@export var speed: float = 65.0
+var speed: float = 65.0
 var player: Node2D = null
 var player_chase: bool = false
 @onready var anim: AnimatedSprite2D = $animation_manager/AnimatedSprite2D
 @export var max_health = 150
 @export var health = 150
-@export var damage = 20
+var damage = 0
 var player_in_hitbox = false
 var player_hurtbox = null
 var is_dead = false
@@ -17,16 +17,23 @@ var attack_cooldown_timer = false
 var is_spawning = false
 var _pending_spawn_count = 0
 var _attack_coroutine_active = false  
+var is_invincible = false
 
 var phase = 1
-var phase1_speed = 40.0
-var phase1_damage = 10
-var phase1_spawn_interval = 5.0
-var phase1_max_snakes = 3
-var phase2_speed = 80.0
-var phase2_damage = 20
-var phase2_spawn_interval = 2.0
-var phase2_max_snakes = 6
+@export var phase1_speed = 40.0
+@export var phase1_damage = 10
+@export var phase1_spawn_interval = 5.0
+@export var phase1_max_snakes = 3
+@export var phase2_speed = 80.0
+@export var phase2_damage = 20
+@export var phase2_spawn_interval = 2.0
+@export var phase2_max_snakes = 6
+@export var phase1_spawn_count_min = 1
+@export var phase1_spawn_count_max = 2
+@export var phase2_spawn_count_min = 2
+@export var phase2_spawn_count_max = 4
+
+
 
 @export var snake_scene: PackedScene
 var spawn_timer = 0.0
@@ -87,7 +94,7 @@ func _physics_process(delta):
 	if player != null:
 		spawn_timer -= delta
 		if spawn_timer <= 0:
-			var count = 2 if phase == 1 else 4
+			var count = randi_range(phase1_spawn_count_min, phase1_spawn_count_max) if phase == 1 else randi_range(phase2_spawn_count_min, phase2_spawn_count_max)
 			print("[MEDUSA] Spawn timer expirat, spawn ", count, " serpi, faza=", phase)
 			spawn_snake(count)
 
@@ -104,13 +111,14 @@ func _on_detection_area_body_exited(body):
 		player_chase = false
 
 func take_damage(attackdamage):
-	if is_dead or is_hurt:
+	if is_dead or is_hurt or is_invincible:
 		print("[MEDUSA] take_damage ignorat: is_dead=", is_dead, " is_hurt=", is_hurt)
 		return
 	print("[MEDUSA] Primit damage: ", attackdamage, " health inainte: ", health)
 	health -= attackdamage
 	update_health()
 	is_hurt = true
+	is_invincible = true
 	is_attacking = false
 	is_spawning = false
 	_pending_spawn_count = 0
@@ -120,10 +128,10 @@ func take_damage(attackdamage):
 	anim.play("hurt")
 	print("[MEDUSA] Animatie hurt pornita")
 	await anim.animation_finished
+	is_hurt = false
 	if anim.animation != "hurt" and anim.animation != "idle" and anim.animation != "walk":
 		return
 	print("[MEDUSA] Animatie hurt terminata")
-	is_hurt = false
 	if health <= 0:
 		print("[MEDUSA] Health <= 0, moare")
 		is_dead = true
@@ -134,6 +142,20 @@ func take_damage(attackdamage):
 			anim.play("walk")
 		else:
 			anim.play("idle")
+	await get_tree().create_timer(3.0).timeout
+	is_invincible = false
+	
+	if player != null and spawn_timer <= 0:
+		var count = randi_range(phase1_spawn_count_min, phase1_spawn_count_max) if phase == 1 else randi_range(phase2_spawn_count_min, phase2_spawn_count_max)
+		spawn_snake(count)
+	
+	var overlapping = $AttackHitbox.get_overlapping_areas()
+	for area in overlapping:
+		if area.name == "Hurtbox":
+			player_hurtbox = area
+			is_attacking = true
+			anim.play("attack")
+			return
 
 func _on_animation_finished():
 	print("[MEDUSA] Animatie terminata: ", anim.animation, " is_hurt=", is_hurt, " is_dead=", is_dead, " is_spawning=", is_spawning, " is_attacking=", is_attacking)
@@ -148,6 +170,10 @@ func _on_animation_finished():
 			for i in range(_pending_spawn_count):
 				var angle = randf() * TAU
 				var spawn_pos = global_position + Vector2(cos(angle), sin(angle)) * 100
+				var wave_manager = get_tree().get_first_node_in_group("wave_manager")
+				if wave_manager != null:
+					spawn_pos.x = clamp(spawn_pos.x, wave_manager.map_min.x, wave_manager.map_max.x)
+					spawn_pos.y = clamp(spawn_pos.y, wave_manager.map_min.y, wave_manager.map_max.y)
 				var snake = snake_scene.instantiate()
 				get_parent().add_child(snake)
 				snake.global_position = spawn_pos
@@ -156,6 +182,15 @@ func _on_animation_finished():
 		else:
 			print("[MEDUSA] EROARE: snake_scene e null!")
 		_pending_spawn_count = 0
+		
+		var overlapping = $AttackHitbox.get_overlapping_areas()
+		for area in overlapping:
+			if area.name == "Hurtbox":
+				player_hurtbox = area
+				is_attacking = true
+				anim.play("attack")
+				print("[MEDUSA] Atac dupa spawn")
+				return
 		if player_chase:
 			anim.play("walk")
 		else:
@@ -171,6 +206,7 @@ func _on_animation_finished():
 
 func _finish_attack():
 	if _attack_coroutine_active:
+		is_attacking = false
 		print("[MEDUSA] _finish_attack: coroutine deja activa, ignorat")
 		return
 	_attack_coroutine_active = true
@@ -195,8 +231,9 @@ func _finish_attack():
 	_attack_coroutine_active = false
 
 	
-	if is_dead or is_hurt:
+	if is_dead or is_hurt or is_invincible or is_spawning:
 		attack_cooldown_timer = false
+		_attack_coroutine_active = false
 		return
 
 	attack_cooldown_timer = false
@@ -204,6 +241,8 @@ func _finish_attack():
 	
 	if is_spawning:
 		print("[MEDUSA] Post-attack: spawn in curs, las animatia de spawn sa ruleze")
+		attack_cooldown_timer = false
+		_attack_coroutine_active = false 
 		return
 
 	
@@ -291,8 +330,8 @@ func spawn_snake(count: int = 1):
 		print("[MEDUSA] spawn_snake ignorat: snake_scene=", snake_scene, " player=", player)
 		return
 
-	if is_attacking or attack_cooldown_timer or _attack_coroutine_active:
-		spawn_timer = 2.0
+	if is_attacking:
+		spawn_timer = 0.5
 		print("[MEDUSA] Spawn amanat, Medusa ataca, retry in 2s")
 		return
 
