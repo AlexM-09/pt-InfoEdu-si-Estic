@@ -963,6 +963,7 @@ layer_3/z_index = 1000
 layer_3/tile_data = PackedInt32Array(-196608, 1114117, 26, -131073, 1114117, 26)
 
 [node name="player" parent="." unique_id=1176532510 instance=ExtResource("5_y2v78")]
+visible = false
 position = Vector2(1, -7)
 
 [node name="Invisible Walls" type="StaticBody2D" parent="." unique_id=1011174635]
@@ -995,12 +996,18 @@ spawn_point_name = "HubExit"
 script = ExtResource("8_bt7bx")
 
 [node name="InteractLabel" type="Label" parent="StatuieInteraction" unique_id=976000948]
-offset_left = -54.0
+z_index = 1506
+offset_left = -52.999996
 offset_top = -68.0
-offset_right = 64.0
-offset_bottom = -42.0
+offset_right = 354.0
+offset_bottom = 33.0
+scale = Vector2(0.28, 0.28)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 13
 theme_override_fonts/font = ExtResource("9_ou7xi")
+theme_override_font_sizes/font_size = 64
 text = "[E] Hall of fame"
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StatuieInteraction" unique_id=307250106]
 position = Vector2(0, -32)

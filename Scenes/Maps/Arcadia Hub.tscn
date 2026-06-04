@@ -2707,7 +2707,6 @@ theme_override_font_sizes/font_size = 64
 text = "[E] Legenda Medusei"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="infomedusa" unique_id=112676247]
-visible = false
 script = ExtResource("21_s1mlc")
 
 [node name="Panel" type="Panel" parent="infomedusa/CanvasLayer" unique_id=260754976]
@@ -2824,22 +2823,23 @@ metadata/_edit_use_anchors_ = true
 [node name="Label" type="Label" parent="infociclops/CanvasLayer/Panel" unique_id=1728666965]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.30018085
-anchor_top = 0.027355611
-anchor_right = 0.5280289
-anchor_bottom = 0.16717324
+anchor_left = 0.3453853
+anchor_top = 0.016528934
+anchor_right = 0.5199904
+anchor_bottom = 0.16694215
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("15_0jgyi")
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 57
 text = "Ciclopsul"
 metadata/_edit_use_anchors_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="infociclops/CanvasLayer/Panel" unique_id=787342020]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 46.0
-offset_right = 565.0
-offset_bottom = 587.0
+anchor_left = 0.020932445
+anchor_top = 0.07603305
+anchor_right = 0.53758323
+anchor_bottom = 0.97024786
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="infociclops/CanvasLayer/Panel/ScrollContainer" unique_id=1984736708]
 custom_minimum_size = Vector2(300, 0)

@@ -169,6 +169,7 @@ offset_top = 392.0
 offset_right = 1179.0
 offset_bottom = 510.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("6_iov1x")
 theme_override_font_sizes/font_size = 63
 text = "Cum te numesti, erou?"
@@ -198,7 +199,6 @@ script = ExtResource("12_k787g")
 music = ExtResource("13_skbqr")
 
 [node name="Options" type="Panel" parent="." unique_id=1859902014]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.23434344
@@ -378,6 +378,8 @@ anchor_top = 0.06944445
 anchor_right = 0.50252527
 anchor_bottom = 0.2324074
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 39
 theme_override_fonts/font = ExtResource("6_iov1x")
 theme_override_font_sizes/font_size = 111
 text = "CURSE OF ARCADIA"

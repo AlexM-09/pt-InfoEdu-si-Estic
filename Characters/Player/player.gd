@@ -107,7 +107,7 @@ func player_attack():
 	if Input.is_action_just_pressed("attack") and !is_attacking:
 		if get_viewport().gui_is_drag_successful():
 			return
-		var mouse_pos = get_viewport().get_mouse_position()
+		var _mouse_pos = get_viewport().get_mouse_position()
 		if get_viewport().gui_get_hovered_control() != null:
 			return
 		is_attacking = true
@@ -130,7 +130,7 @@ func _disable_hitbox():
 func _on_attack_hitbox_area_entered(area):
 	print("Player HIT: ", area.name)
 	if area.name == "Hurtbox":
-		var dmg = calculate_attack(attackdamage)
+		var _dmg = calculate_attack(attackdamage)
 		area.get_parent().take_damage(attackdamage)
 		call_deferred("_disable_hitbox")
 
