@@ -107,10 +107,10 @@ func _process(delta):
 				start_wave()
 		return
 
-	var seconds = int(wave_timer) % 60
+	var Seconds = int(wave_timer) % 60
 	@warning_ignore("integer_division")
 	var minutes = int(wave_timer) / 60
-	timer_label.text = "Wave %d | %02d:%02d" % [current_wave, minutes, seconds]
+	timer_label.text = "Wave %d | %02d:%02d" % [current_wave, minutes, Seconds]
 
 	if spawn_timer <= 0:
 		spawn_enemy()

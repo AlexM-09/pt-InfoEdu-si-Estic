@@ -377,7 +377,7 @@ wait_time = 5.0
 autostart = true
 
 [node name="healthbar" type="ProgressBar" parent="." unique_id=1779901433]
-modulate = Color(4.933402e-07, 0.4745332, 0.11299614, 1)
+modulate = Color(0, 1.1806151, 0.33872217, 1)
 offset_left = -11.999999
 offset_top = -31.999998
 offset_right = 109.21211
