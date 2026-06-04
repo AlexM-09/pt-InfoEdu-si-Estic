@@ -42,6 +42,7 @@ var enemy_health_multiplier: float = 1.0
 var enemy_damage_multiplier: float = 1.0
 
 func _ready():
+	add_to_group("wave_manager")
 	wave_complete_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	wave_complete_label.offset_left -= 100 
 	player = get_tree().get_first_node_in_group("player")

@@ -170,6 +170,10 @@ func _on_animation_finished():
 			for i in range(_pending_spawn_count):
 				var angle = randf() * TAU
 				var spawn_pos = global_position + Vector2(cos(angle), sin(angle)) * 100
+				var wave_manager = get_tree().get_first_node_in_group("wave_manager")
+				if wave_manager != null:
+					spawn_pos.x = clamp(spawn_pos.x, wave_manager.map_min.x, wave_manager.map_max.x)
+					spawn_pos.y = clamp(spawn_pos.y, wave_manager.map_min.y, wave_manager.map_max.y)
 				var snake = snake_scene.instantiate()
 				get_parent().add_child(snake)
 				snake.global_position = spawn_pos
@@ -178,6 +182,15 @@ func _on_animation_finished():
 		else:
 			print("[MEDUSA] EROARE: snake_scene e null!")
 		_pending_spawn_count = 0
+		
+		var overlapping = $AttackHitbox.get_overlapping_areas()
+		for area in overlapping:
+			if area.name == "Hurtbox":
+				player_hurtbox = area
+				is_attacking = true
+				anim.play("attack")
+				print("[MEDUSA] Atac dupa spawn")
+				return
 		if player_chase:
 			anim.play("walk")
 		else:
@@ -218,8 +231,9 @@ func _finish_attack():
 	_attack_coroutine_active = false
 
 	
-	if is_dead or is_hurt:
+	if is_dead or is_hurt or is_invincible or is_spawning:
 		attack_cooldown_timer = false
+		_attack_coroutine_active = false
 		return
 
 	attack_cooldown_timer = false
@@ -316,8 +330,8 @@ func spawn_snake(count: int = 1):
 		print("[MEDUSA] spawn_snake ignorat: snake_scene=", snake_scene, " player=", player)
 		return
 
-	if is_attacking or attack_cooldown_timer or _attack_coroutine_active:
-		spawn_timer = 2.0
+	if is_attacking:
+		spawn_timer = 0.5
 		print("[MEDUSA] Spawn amanat, Medusa ataca, retry in 2s")
 		return
 

@@ -327,6 +327,7 @@ collision_layer = 2
 script = ExtResource("1_1fj45")
 max_health = 300
 health = 300
+phase1_damage = 75
 phase1_spawn_interval = 3.0
 phase2_damage = 120
 snake_scene = ExtResource("2_keo1d")
