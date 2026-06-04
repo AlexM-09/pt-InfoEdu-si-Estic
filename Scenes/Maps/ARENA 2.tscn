@@ -1559,9 +1559,10 @@ enemy_scenes = Array[PackedScene]([ExtResource("11_3niv0"), ExtResource("12_sqpj
 boss_scene = ExtResource("10_0vg6y")
 spawn_radius = 70.0
 spawn_interval = 1.5
-wave_duration = 30.0
+wave_duration = 5.0
+break_duration = 2.0
 level_index = 1
-max_waves = 4
+max_waves = 2
 
 [node name="MusicController" type="Node" parent="." unique_id=104953840]
 process_mode = 3
