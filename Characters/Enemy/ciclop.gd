@@ -223,7 +223,6 @@ func _die():
 	is_dead = true
 	player_in_hitbox = false
 	player_hurtbox = null
-	$AttackHitbox/CollisionShape2D.disabled = true
 	player_chase = false
 	velocity = Vector2.ZERO
 	anim.play("death")
