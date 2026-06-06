@@ -943,6 +943,9 @@ region_rect = Rect2(37, 1664, 250, 287)
 texture = ExtResource("11_24v15")
 region_rect = Rect2(279, 1460, 178, 53)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24v15"]
+bg_color = Color(0.32826403, 0.30664173, 0.24001548, 0.5058824)
+
 [node name="Arcadia Temple" type="Node2D" unique_id=1976361872]
 y_sort_enabled = true
 
@@ -957,13 +960,10 @@ layer_1/tile_data = PackedInt32Array(327679, 851972, 14, 262144, 720900, 13, 196
 layer_2/name = "Ground Objects"
 layer_2/y_sort_enabled = true
 layer_2/z_index = 1
-layer_2/tile_data = PackedInt32Array(262137, 2818048, 26, 262138, 2818048, 26, 262139, 2818048, 26, 262140, 2818048, 26, 262141, 2818048, 26, 196610, 2818048, 26, 196611, 2818048, 26, 196612, 2818048, 26, 131070, 2752512, 26, 65537, 2883584, 26, 262142, 2752512, 29, 196609, 2883584, 29, 262136, 2883584, 29, 196615, 2752512, 29, 196613, 2818048, 26, 196614, 2818048, 26, 7, 2752512, 26, -196601, 2752512, 26, -393209, 2883584, 26, -393210, 2818048, 26, -327687, 2818048, 26, -327686, 2818048, 26, -327685, 2818048, 26, -327684, 2818048, 26, -327683, 2818048, 26, -327682, 2818048, 26, -327681, 2818048, 26, -393216, 2818048, 26, -393215, 2818048, 26, -393214, 2818048, 26, -393213, 2818048, 26, -393212, 2818048, 26, -393211, 2818048, 26, 65528, 2883584, 26, -131080, 2883584, 26, -327688, 2752512, 26, -65539, 2686976, 6, -196615, 3014656, 32, -262150, 3145728, 32, -131078, 3276800, 33, -262139, 3211264, 31, -196602, 3276800, 31, -327674, 3211264, 32, 131065, 3080192, 32, 65542, 3211264, 32, -131070, 2686976, 6, -196608, 983045, 24, -131073, 983045, 24)
+layer_2/tile_data = PackedInt32Array(262137, 2818048, 26, 262138, 2818048, 26, 262139, 2818048, 26, 262140, 2818048, 26, 262141, 2818048, 26, 196610, 2818048, 26, 196611, 2818048, 26, 196612, 2818048, 26, 131070, 2752512, 26, 65537, 2883584, 26, 262142, 2752512, 29, 196609, 2883584, 29, 262136, 2883584, 29, 196615, 2752512, 29, 196613, 2818048, 26, 196614, 2818048, 26, 7, 2752512, 26, -196601, 2752512, 26, -393209, 2883584, 26, -393210, 2818048, 26, -327687, 2818048, 26, -327686, 2818048, 26, -327685, 2818048, 26, -327684, 2818048, 26, -327683, 2818048, 26, -327682, 2818048, 26, -327681, 2818048, 26, -393216, 2818048, 26, -393215, 2818048, 26, -393214, 2818048, 26, -393213, 2818048, 26, -393212, 2818048, 26, -393211, 2818048, 26, 65528, 2883584, 26, -131080, 2883584, 26, -327688, 2752512, 26, -65539, 2686976, 6, -196615, 3014656, 32, -262150, 3145728, 32, -131078, 3276800, 33, -262139, 3211264, 31, -196602, 3276800, 31, -327674, 3211264, 32, 131065, 3080192, 32, 65542, 3211264, 32, -131070, 2686976, 6, -65537, 983045, 24, -131072, 983045, 24)
 layer_3/name = "Air Objects"
 layer_3/z_index = 1000
-layer_3/tile_data = PackedInt32Array(-196608, 1114117, 26, -131073, 1114117, 26)
-
-[node name="player" parent="." unique_id=1176532510 instance=ExtResource("5_y2v78")]
-position = Vector2(1, -7)
+layer_3/tile_data = PackedInt32Array(-131072, 1114117, 26, -65537, 1114117, 26)
 
 [node name="Invisible Walls" type="StaticBody2D" parent="." unique_id=1011174635]
 collision_layer = 3
@@ -995,10 +995,9 @@ spawn_point_name = "HubExit"
 script = ExtResource("8_bt7bx")
 
 [node name="InteractLabel" type="Label" parent="StatuieInteraction" unique_id=976000948]
-z_index = 1506
-offset_left = -52.999996
+offset_left = -54.0
 offset_top = -68.0
-offset_right = 354.0
+offset_right = 353.0
 offset_bottom = 33.0
 scale = Vector2(0.28, 0.28)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -1009,7 +1008,7 @@ text = "[E] Hall of fame"
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StatuieInteraction" unique_id=307250106]
-position = Vector2(0, -32)
+position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_24v15")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=532907503]
@@ -1019,17 +1018,14 @@ script = ExtResource("10_ou7xi")
 [node name="HallOfFamePanel" type="Panel" parent="CanvasLayer" unique_id=1052464848]
 process_mode = 3
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.597
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 465.25598
-offset_bottom = 327.0
+anchor_left = 0.2090909
+anchor_top = 0.2
+anchor_right = 0.8319778
+anchor_bottom = 0.80277777
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_kjh5a")
+metadata/_edit_use_anchors_ = true
 
 [node name="BtnBack" type="Button" parent="CanvasLayer/HallOfFamePanel" unique_id=594431351]
 process_mode = 3
@@ -1062,14 +1058,28 @@ theme_override_fonts/font = ExtResource("9_ou7xi")
 theme_override_font_sizes/font_size = 76
 text = "STATS"
 
+[node name="Panel" type="Panel" parent="CanvasLayer/HallOfFamePanel" unique_id=999177555]
+layout_mode = 0
+anchor_left = 0.15486704
+anchor_top = 0.2734255
+anchor_right = 0.79460573
+anchor_bottom = 0.71735793
+theme_override_styles/panel = SubResource("StyleBoxFlat_24v15")
+metadata/_edit_use_anchors_ = true
+
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/HallOfFamePanel" unique_id=1869323962]
 process_mode = 3
-layout_mode = 0
-offset_left = 191.0
-offset_top = 87.0
-offset_right = 980.0
-offset_bottom = 451.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15486704
+anchor_top = 0.2734255
+anchor_right = 0.79460573
+anchor_bottom = 0.71735793
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HallOfFamePanel/ScrollContainer" unique_id=345546864]
 process_mode = 3
 layout_mode = 2
+
+[node name="player" parent="." unique_id=1176532510 instance=ExtResource("5_y2v78")]
+position = Vector2(1, -7)

@@ -20,8 +20,11 @@ func _populate_list():
 	var hall = SaveManager.data["hall_of_fame"]
 	if hall.is_empty():
 		var empty_label = Label.new()
-		empty_label.text = "Nu există recorduri încă!\nTermină o bătălie ca să apari aici."
+		empty_label.text = "                               Nu există recorduri încă!\n                               Termină o bătălie ca să apari aici."
 		empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		empty_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		empty_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		empty_label.size_flags_vertical = Control.SIZE_EXPAND_FILL
 		empty_label.add_theme_color_override("font_color", Color.GOLD)
 		empty_label.add_theme_font_size_override("font_size", 24)
 		vbox.add_child(empty_label)
@@ -37,6 +40,7 @@ func _populate_list():
 			entry["damage_dealt"],
 			entry["damage_taken"],
 		]
+		label.add_theme_font_size_override("font_size", 22) 
 		if i == 0:
 			label.add_theme_color_override("font_color", Color.GOLD)
 		elif i == 1:
