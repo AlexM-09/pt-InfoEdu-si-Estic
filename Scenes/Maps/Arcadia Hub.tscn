@@ -2610,6 +2610,7 @@ text = "[E] Legenda Minotaurului"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="infominotaur" unique_id=509895166]
 process_mode = 3
+visible = false
 script = ExtResource("17_3y422")
 
 [node name="Panel" type="Panel" parent="infominotaur/CanvasLayer" unique_id=368828734]
@@ -2707,6 +2708,7 @@ theme_override_font_sizes/font_size = 64
 text = "[E] Legenda Medusei"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="infomedusa" unique_id=112676247]
+visible = false
 script = ExtResource("21_s1mlc")
 
 [node name="Panel" type="Panel" parent="infomedusa/CanvasLayer" unique_id=260754976]
@@ -2805,6 +2807,7 @@ text = "[E] Legenda Ciclopsului"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="infociclops" unique_id=1487998798]
 process_mode = 3
+visible = false
 script = ExtResource("23_1rs88")
 
 [node name="Panel" type="Panel" parent="infociclops/CanvasLayer" unique_id=1271466359]
@@ -2921,20 +2924,22 @@ theme_override_fonts/font = ExtResource("15_0jgyi")
 theme_override_font_sizes/font_size = 64
 text = "ÎNVINGE MINOTAURUL MAI ÎNTÂI!"
 
-[node name="Ciclops Locked" type="CollisionShape2D" parent="." unique_id=1443146243]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=376865536]
+
+[node name="Ciclops Locked" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1443146243]
 z_index = 626
 position = Vector2(859.25, 372)
 shape = SubResource("RectangleShape2D_as07b")
 
-[node name="Area2D" type="Area2D" parent="Ciclops Locked" unique_id=535850103]
+[node name="Area2D" type="Area2D" parent="StaticBody2D2/Ciclops Locked" unique_id=535850103]
 script = ExtResource("26_5ppv6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ciclops Locked/Area2D" unique_id=859781044]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/Ciclops Locked/Area2D" unique_id=859781044]
 position = Vector2(0.75, 7)
 shape = SubResource("RectangleShape2D_ykm7w")
 debug_color = Color(0.71815693, 0.3126944, 0.9123063, 0.41960785)
 
-[node name="Panel" type="Panel" parent="Ciclops Locked" unique_id=1654402792]
+[node name="Panel" type="Panel" parent="StaticBody2D2/Ciclops Locked" unique_id=1654402792]
 z_index = 592
 offset_left = -188.24998
 offset_top = 12.0
@@ -2942,7 +2947,7 @@ offset_right = 181.75002
 offset_bottom = 46.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1rs88")
 
-[node name="Label" type="Label" parent="Ciclops Locked" unique_id=1642728020]
+[node name="Label" type="Label" parent="StaticBody2D2/Ciclops Locked" unique_id=1642728020]
 z_index = 824
 offset_left = -178.75002
 offset_top = 11.999996

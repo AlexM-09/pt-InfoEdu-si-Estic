@@ -23,6 +23,8 @@ var tired_duration = 4.0
 const ATTACK_RANGE = 25.0
 
 
+var is_invincible = false
+
 var _last_dist = -1.0
 var _last_anim = ""
 var _last_state = ""
@@ -115,40 +117,83 @@ func _on_detection_area_body_exited(body):
 		player_chase = false
 
 func take_damage(attackdamage):
-	if is_dead or is_hurt:
-		print("[CICLOP] take_damage ignorat: is_dead=", is_dead, " is_hurt=", is_hurt)
+	if is_dead or is_invincible: # Am scos is_hurt și is_attacking de aici ca să poată primi damage oricând nu e invincibil
 		return
-	print("[CICLOP] Primit damage: ", attackdamage, " health inainte: ", health)
+		
 	health -= attackdamage
 	update_health()
-	is_hurt = true
-	is_attacking = false
-	anim.play("hurt")
-	print("[CICLOP] Animatie pornita: hurt")
-	await anim.animation_finished
-	print("[CICLOP] Animatie terminata: hurt")
-	is_hurt = false
+	
+	# Dacă moare, oprim totul direct
 	if health <= 0:
-		print("[CICLOP] Health <= 0, moare")
 		SaveManager.add_kill()
 		is_dead = true
 		call_deferred("_die")
+		return
+
+	# Întrerupem starea de oboseală sau atac dacă era în desfășurare
+	is_attacking = false
+	is_tired = false
+	anim.speed_scale = 1.0 # Resetăm viteza animației în caz că era obosit
+	
+	is_hurt = true
+	is_invincible = true
+	
+	anim.play("hurt")
+	
+	# Folosim un mod mai sigur de a aștepta finalul animației direct pe obiect, 
+	# sau punem un fallback de timp în caz că animația e întreruptă
+	await anim.animation_finished
+	
+	is_hurt = false # Ne asigurăm că se face false AICI
+	attack_cooldown_timer = false
+
+	# Pornim thread-ul de invincibilitate separat ca să nu blocheze mișcarea baddielui
+	_start_invincibility_timer(3.0)
+	
+	# Forțăm reevaluarea stării după ce a ieșit din hurt
+	if player_chase and player != null:
+		anim.play("walk")
 	else:
-		if is_tired:
-			anim.play("obosit")
-			print("[CICLOP] Animatie pornita: obosit (dupa hurt)")
-		elif player_chase:
-			anim.play("walk")
-			print("[CICLOP] Animatie pornita: walk (dupa hurt)")
-		else:
-			anim.play("idle")
-			print("[CICLOP] Animatie pornita: idle (dupa hurt)")
+		anim.play("idle")
+
+# Funcție helper pentru invincibilitate, ca să nu blocheze take_damage
+func _start_invincibility_timer(duration: float):
+	await get_tree().create_timer(duration).timeout
+	is_invincible = false
+
+
+func _become_tired():
+	if is_dead or is_hurt: return # Nu deveni obosit dacă ești deja lovit sau mort
+	
+	print("[CICLOP] _become_tired inceput, durata=", tired_duration)
+	is_tired = true
+	attack_count = 0
+	anim.speed_scale = 0.5
+	anim.play("obosit")
+	
+	await get_tree().create_timer(tired_duration).timeout
+	
+	# VERIFICARE CRUCIALĂ: Dacă în timp ce era obosit a fost lovit (is_hurt), 
+	# nu mai facem nimic aici, pentru că take_damage a preluat deja controlul!
+	if is_hurt or is_dead:
+		print("[CICLOP] Oboseala întreruptă de damage sau moarte.")
+		return
+		
+	print("[CICLOP] Oboseala terminata normal")
+	is_tired = false
+	anim.speed_scale = 1.0
+	attack_cooldown_timer = false
+	
+	if player_chase and player != null:
+		anim.play("walk")
+	else:
+		anim.play("idle")
+
 
 func _on_animation_finished():
 	print("[CICLOP] === Animatie terminata: '", anim.animation, "' | is_hurt=", is_hurt, " is_dead=", is_dead, " is_attacking=", is_attacking, " attack_cooldown_timer=", attack_cooldown_timer, " attack_count=", attack_count)
 
-	if is_hurt or is_dead:
-		print("[CICLOP] Ignorat: is_hurt=", is_hurt, " is_dead=", is_dead)
+	if is_dead:
 		return
 
 	if anim.animation == "attack":
@@ -169,8 +214,8 @@ func _on_animation_finished():
 		attack_count += 1
 		print("[CICLOP] attack_count acum: ", attack_count, " / ", attacks_before_tired)
 
-		print("[CICLOP] Incep cooldown 1.5s...")
-		await get_tree().create_timer(1.5).timeout
+		print("[CICLOP] Incep cooldown 0.5s...")
+		await get_tree().create_timer(0.5).timeout
 		print("[CICLOP] Cooldown terminat, attack_cooldown_timer -> false")
 		attack_cooldown_timer = false
 
@@ -191,32 +236,15 @@ func _on_animation_finished():
 			print("[CICLOP] Animatie pornita: idle (dupa cooldown)")
 		return
 
+	if is_hurt:
+		print("[CICLOP] Ignorat: is_hurt=", is_hurt)
+		return
+
 	if anim.animation == "obosit":
 		print("[CICLOP] Animatie obosit terminata (gestionata de _become_tired)")
 		return
 
 	print("[CICLOP] Animatie necunoscuta terminata: ", anim.animation)
-
-func _become_tired():
-	print("[CICLOP] _become_tired inceput, durata=", tired_duration)
-	is_tired = true
-	attack_count = 0
-	anim.speed_scale = 0.5
-	anim.play("obosit")
-	print("[CICLOP] Animatie pornita: obosit")
-	await get_tree().create_timer(tired_duration).timeout
-	print("[CICLOP] Oboseala terminata")
-	if is_dead:
-		return
-	is_tired = false
-	anim.speed_scale = 1.0
-	attack_cooldown_timer = false
-	if player_chase:
-		anim.play("walk")
-		print("[CICLOP] Animatie pornita: walk (dupa oboseala)")
-	else:
-		anim.play("idle")
-		print("[CICLOP] Animatie pornita: idle (dupa oboseala)")
 
 func _die():
 	print("[CICLOP] _die apelat")
