@@ -404,6 +404,7 @@ collision_layer = 2
 script = ExtResource("1_jlyt8")
 max_health = 500
 health = 500
+damage = 120
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=646191265]
 position = Vector2(0, -4)
